@@ -1,0 +1,81 @@
+# Antigravity 最新版本改动
+
+[English](../../full/antigravity.md) | 简体中文 · [精简版 (Highlight)](../antigravity.md) | **完整详情 (Full Detail)**
+
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）技术版本索引（覆盖 **Antigravity Desktop / Hub `2.32.2`** 与 **Antigravity IDE `2.7.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
+
+## Antigravity Desktop（Hub）2.32.2（2026-11-17，包 `Last-Modified`）
+
+详细改动见 [antigravity/2026-11-17_2.32.2.md](antigravity/2026-11-17_2.32.2.md)。
+
+- **Electron 壳层仅版本号更新及跨端 `app.asar` 核验（`2.32.1` → `2.32.2`，构建号 `4665802025205760`）**
+  - 基于官方 `darwin-arm` 双 DMG 全量解包比对确认：`app.asar`（`1,068` 个文件、`18,668,119` B，归档 `5,656,861` B，SHA-256 `5b493943… → 056ba838…`，Electron `44.9.1`，`7` 项依赖）唯一变化为 `package.json` 版本号升至 `2.32.2`，`app.asar.unpacked`（`chrome-devtools-mcp` `1.9.0`）在 `darwin-arm` 与 `linux-x64` 两端均零差异（`windows-x64` 内嵌 `app.asar` 与 `376` 条 RPC 仅来自点测而非全量解包对比，`darwin-x64` 仅 HTTP `HEAD` 探测；未运行程序且未联网验签）。
+- **Go `language_server` 静态重编译（`cl/1021296516` → `cl/1022991777`）与抽取文本清单不变**
+  - 重编译 `language_server`（`darwin-arm`：`205,328,064 → 205,328,032` B，去重 `strings` `+765 / −703`；`linux-x64`：`239,952,296` B 同大小，去重 `strings` `+194 / −239`）除构建元数据更新外仅检出 `cel.WithDefaultHTTPTimeout` → `cel.withDefaultCELHTTPTimeout` 改名与 3 个 `telemetryclient`/`clearcutLogger` `Shutdown` 闭包符号消失（属静态重编译证据，不臆造功能修复）；静态抽取的 `376` 条 RPC、`189` 对特性开关、`65` 项 `*ToolConfig`、`9` 档 `gemini-4-*` 模型串以及 `9,000` B `run_workflow` 文档和 `agy_tool_safety` 块均无变化（仅代表静态文本清单不变，非运行时或服务端证明；外部 `10%` rollout 仅属早期瞬态采样，不代表全量发布）。
+
+---
+
+## 前序补丁构建（Hub）：2.32.1（2026-11-14）
+
+详细改动见 [antigravity/2026-11-14_2.32.1.md](antigravity/2026-11-14_2.32.1.md)。
+
+- **默认模型目录新增 `Gemini 4 Hydrogen` 档位与后端重编译（`2.32.0` → `2.32.1`）**
+  - `language_server` 同体积重编译（`239,952,296` B，`cl/1020489536 → cl/1021296516`，SHA-256 `b9a8f18d… → 4847eb00…`，去重 `strings` 差集仅 `+1,085 / −1,115`），唯一语义变更为在内置默认模型目录中新增 `gemini-4-hydrogen-{low,medium,high}`（显示名 `Gemini 4 Hydrogen (High)`，符号 `defaultmodels.Gemini4Hydrogen`，指标 `gemini-4-hydrogenaicode_latency_ms`）。
+- **Electron 壳层逐字节一致且协议/开关/工具零漂移**
+  - `app.asar`（`dist/` + `node_modules/`，`1,068` 个文件、`18,668,119` B，Electron `44.9.1`，`7` 项依赖）及解包 `chrome-devtools-mcp` `1.9.0` 除 `package.json` 版本号升至 `2.32.1` 外与 `2.32.0` 逐字节一致；`375` 个真实 `LanguageServerService` RPC、`112` 个特性开关、`49` 类 `*ToolConfig` 与 `agy_tool_safety` 白名单零变化。
+
+---
+
+## 近期主版本基线（Hub）：2.32.0（2026-11-13）
+
+详细改动见 [antigravity/2026-11-13_2.32.0.md](antigravity/2026-11-13_2.32.0.md)。
+
+- **体积与构建基线（`2.31.2` → `2.32.0`；三平面 MCP 基线保持不变）**
+  - 维持 Electron `44.9.1`、`CHROME_DEVTOOLS_MCP_JS` 注入、内置 `chrome_devtools` `18 + 1` 工具集及逐字节相同的随包 `chrome-devtools-mcp` `1.9.0`；`app.asar/dist` 顶层由 `59` 扩至 `70` 项并新增 `30` 文件的 `dist/remote/`，Go `language_server` 由 `206.8` MB 增至 `240.0` MB（`+33,124,376` B / `+31.6` MiB，`cl/1020489536`，约 90% 增量位于 `.noptrdata` protobuf 描述符）。
+- **Electron 壳层：SSH 远程开发栈、Catcher 三层视图、跨站凭据剥离与移除 `shell-env`**
+  - 新增 `30` 文件 SSH 远程开发栈（`--ssh-host=`、`--agy-backend=ssh`、`bootstrapScript.js` 随机 secret marker 引导协议、断连存活 `--persistent_mode` 远端 LS、`27` 通道 `remoteIpcChannels.js` 白名单 + `localOnly` 纵深拦截）与 `base UI + clip view + catcher overlay` 三层访客视图栈（`9` 条 `wcv:catcher-*` 手势通道）。
+  - 新增跨站子框架凭据剥离（`guestCrossSiteCredentials.js` + 单管线 `guestRequestHeaders.js`）与访客 UA `Electron/<ver>` 清洗（`stripGuestElectronUserAgentToken`，含 Google BotGuard 特判）；移除 `shell-env ^4.0.3`（依赖 `8 → 7`，`node_modules` `−20` 包）改用自研 `loginShellEnv*.js` 以根治 `execa` 重置 `SIGTERM` 导致退出残留 `language_server` 的问题，并补齐 `StorageFullError` 与 `EPERM`/`EACCES` 重命名容错。
+- **Go `language_server`：`computer` 桌面控制插件、`CloneGitHubRepo` RPC、`+58` 特性开关与 Dynamic Workflows 核验**
+  - 新增受门控的 `cortex/ext/plugins/computer`（符号 `0 → 896`，约 40 个 Go 文件、`ComputerViewerService`、含 `AX_*` 在内的 `18` 项 `COMPUTER_ACTION_TYPE_*` 动作及 `computer` / `browser_eval_gate` 内置代理）、`LanguageServerService/CloneGitHubRepo`（真实 RPC `374 → 375`）、`remote_plugin` 族、`WatchTopic` `AgentRemoteSessionMessages`、`openaiResponsesConverter`、登录/支付页联合阻断话术及 `+58` 个特性开关（`54 → 112`）；静态审计证实 `run_workflow` 与 `embeddedpython` 在 `2.31.2` 已逐字节存在，本次连同官方 `11` 项改进与 `13` 项修复一并开放上线。
+
+---
+
+## Antigravity IDE 2.7.0（发布时间未确认；构建于 2026-11-11）
+
+详细改动见 [antigravity/2026-11-11_ide-2.7.0.md](antigravity/2026-11-11_ide-2.7.0.md)。_（发布时间未确认；`product.json` 中的北京时间 `2026-11-11 12:46` / `2026-11-11T04:46:27.114Z` 是构建时间，不是发布时间。）_
+
+- **变更高度收敛于 `extensions/agy`（`0.0.1` → `1.11.0`；仅 4 个实质变更文件）**
+  - 跨 `linux-x64`、`windows-x64`、`darwin-arm` 三端共 6 个安装包（Code OSS `1.107.0` / Electron `39.2.3`）复核确证：`2.6.0` → `2.7.0` 的全部实质代码变更仅位于 `extensions/agy/{package.json, package.json.patch, vscode/extension.js (+90,987 B), bridge.js (+9,333 B)}`；`out/`、`out/jetskiAgent/`（`11.8 MB`）、`node_modules/` 与其余 `101` 项内置扩展仅存在末尾 37 字节 sourcemap commit 哈希轮换（`9e3a5da5… → 71bedb45…`）。
+- **三态登录状态栏、回环 `GetAuthStatus` 探测、Diff 命令重排与 `+35` Iframe Schema**
+  - 新增三态登录状态栏（`signedOut` 直绑 `antigravity.signIn`，`unknown`/`signedIn` 绑 `antigravity.statusMenu`）、跨窗口密钥同步 `antigravity.authSync`、窗口打开 5 秒后回环探测 `POST /exa.language_server_pb.LanguageServerService/GetAuthStatus`（带 `x-codeium-csrf-token`）、GCP 条款标识 `isGcpTos`、命令 `25 → 33`（拆分单文件 *in Current File* 与跨文件 *in All Files* 的 `acceptAllChanges`/`rejectAllChanges`）、`antigravity.isAntigravityIde` 反馈与 webview 宿主分流（`productId` `5372208`），以及两侧同步新增的 `35` 个 iframe 消息 Schema（`ManageTask`、媒体处理、浏览器录制）。
+- **云开发环境（CDE）`/usr/bin/agy` 优先路径与端口冲突重试**
+  - 新增 `CDE_PREINSTALLED_BINARY_PATH = "/usr/bin/agy"`（检测 `GOOGLE_CLOUD_WORKSTATIONS` / `CLOUD_SHELL` 优先复用预装 CLI）及 `agy --hub` 启动 `canRetryPortCollision` 端口碰撞重试；内联 `351` 方法 `LanguageServerService` 描述符（`327` unary + `23` server-streaming + `1` client-streaming）与 `45` 类 `*ToolConfigSchema` 保持冻结。
+
+---
+
+## Antigravity Desktop（Hub）2.31.2（2026-11-12）
+
+详细改动见 [antigravity/2026-11-12_2.31.2.md](antigravity/2026-11-12_2.31.2.md)。
+
+### 版本概览
+
+Antigravity 桌面端（`antigravity-hub`，`productName: "Antigravity"`，`--subclient_type hub`）`2.31.2` 将 Electron 宿主自 `44.5.1`（`2.29.0`，构建于 `2026-11-04`）升级至 `44.9.1`，Go 单体后端 `language_server`（`third_party/jetski/cortex/*` + 静态内嵌 Rust `ripgrep`，`go1.28-20261102-RC00 cl/1012564305`）由 `195.9` MB 扩容至 `206.8` MB，同时保持「Electron 瘦壳 `dist/languageServer.js` + 内置 `chrome_devtools` 18 工具注入 + 随包 `chrome-devtools-mcp` `1.9.0`」三平面核心接线与 `2.29.0` 逐字节一致。
+
+### Electron 壳层与 Guest WebMCP 桥（`dist/` `37 → 56` 个文件）
+
+- **CDP Guest WebMCP 桥（`dist/` 含 `mcp` 文件数 `1 → 6`）**：
+  - 新增 `dist/guestWebMcpController.js`（`GuestWebMcpController`，默认 `enabled = false`，注释明确 *"Nothing is injected into guests"*），通过 CDP `WebMCP.{enable,disable,invokeTool,cancelInvocation}` 与事件 `WebMCP.{toolsAdded,toolsRemoved,toolResponded}` 消费内置浏览器网页通过 `window.modelcontextprotocol` 自声明的工具。
+  - 配套在 `dist/wcvBrowserRegistry.js:336-354` 开启 `enableBlinkFeatures: 'WebMCP'`，在 `dist/ipcHandlers.js:838-850` 新增 4 条 `webview:webmcp-*` IPC 通道，在 `dist/preload.js:261-264` 暴露渲染端桥接接口，并在 `dist/wcvIpcHandlers.js:137-142` 的 `wcv:acquire` 中实施仅限 Hub 主框架授权的 `webmcpEnabled` 门控。
+  - 安全防线涵盖单次结果 `64` KiB 截断、超时钳制 `1s–120s`（默认 `30s`）、仅限 HTTPS 或 loopback（`isSecureWebMcpUrl`），以及 `PROTECTED_PAYMENT_HOSTS` 黑名单（拦截 Stripe、PayPal、Adyen、Google Pay 等支付与身份认证域，返回 `IDP_OR_PAYMENT_BLOCKED`）。
+- **本地调试端口文件权限加固**：
+  - `dist/main.js:244` 新增调用 `tightenActivePortPermissions(userData, DevToolsActivePort)`（实现于 `dist/paths.js:92-110`），将 `userDataDir` 收紧至 `0o700`、`DevToolsActivePort` 收紧至 `0o600`（保留 `--remote-debugging-port=0`）。
+
+### Go `language_server` 原生工具注册表、安全链与 Connect-RPC（`~50 → ~60` 个工具）
+
+- **原生 Swarm、规划门控、持久终端与 Notebook 演进**：
+  - 主注册表 `ToolConverter` 类型由 `32` 增至 `35`，`cortex_pb.*ToolConfig` 由 `45` 增至 `49`（新增 `FileEdit`、`GrepSearch`、`ManageTask`、`RunWorkflow`），在 `invopop/jsonschema` 结构体反射（`exa.chat_pb.ChatToolDefinition`）之外新增 `ParameterSchema() encoding/json/jsontext.Value` 编译期 Schema 校验路径（`core.compileParameterSchema`）。
+  - 移除静态字面模板 `tool_schema_swarm_manage.json`，上线 `cortex/core/native_swarm/` 原生协同工具族（`manage_swarm`、`post_message`、`read_board`、`swarm_wait`，含 `join` 支持）。
+  - 新增 `planexecute` `enter`/`exit` 门控工具、`update_focus`、`run_workflow`、`list_plugin_accounts`、`search_marketplace` 与 `notebook_execution`，将 `edit_notebook` 对外改名为 `notebook_edit`，为 `run_command` 新增 `RunPersistent` / `RequestedTerminalID` / `NotificationTimeoutSeconds`，重写 `execute_browser_javascript`（`observation` + `intention` + `script` + `urls`，面向 `webview_browser`），并引入包含 14 个工具的并行 `oneharness` 框架。
+- **威胁预筛监视器、`StartMcpOAuthSignIn` 与回退启动器泛化**：
+  - 在保持 `agy_tool_safety`（`version: "5a260837"`）`30` 项 `allowed_tools`、`43` 条 `allowed_commands` 与 `3` 项 `allowed_tool_actions` 白名单不变的基础上，新增轻量 LLM 威胁预筛器 `sir_flash_lite`（`MODEL_TIER_FLASH_LITE`，`mode: LOG`，覆盖威胁信号 A–M）。
+  - Connect-RPC `LanguageServerService` 由 `365` 增至 `374` 个方法，新增 `StartMcpOAuthSignIn`（与 `CompleteMcpOAuth`、`DisconnectMcpOAuth`、`StartPluginAuthSignIn` 并列支持 MCP Server 直连 OAuth 登录），并将内嵌 `chrome-devtools-mcp` 回退启动脚本中的 Playwright Node 路径由固定 `ms-playwright-go/1.57.0/node` 泛化为通配 `ms-playwright-go/*/node`。
