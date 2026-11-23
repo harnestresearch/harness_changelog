@@ -2,9 +2,41 @@
 
 [English](../../full/dsh.md) | 简体中文 · [精简版 (Highlight)](../dsh.md) | **完整详情 (Full Detail)**
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）技术版本索引（当前收录预发布版 `0.2.2-rc.5`）见 [dsh/README.md](dsh/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）技术版本索引（当前收录预发布版 `0.2.3-alpha.2`）见 [dsh/README.md](dsh/README.md)。
 
-## 0.2.2-rc.5 — 预发布版 Prerelease（2026-11-18）
+## 0.2.3-alpha.2 — 预发布版 Prerelease（2026-11-22）
+
+详细改动见 [dsh/2026-11-22_0.2.3-alpha.2.md](dsh/2026-11-22_0.2.3-alpha.2.md)。
+
+### 版本概览
+
+`dsh-v0.2.3-alpha.2`（官方 GitHub Release `published_at` `2026-11-22 19:00:39 UTC+8` / `2026-11-22T11:00:39Z` UTC；早先 git 合并提交 `4b399c39a6d` 于 `2026-11-22 16:50:28 +0800`）是承接 `dsh-v0.2.3-alpha.1`（`d98f5d68519`，官方发布于 `2026-11-22 11:19:36 UTC+8`）的运行时下限与依赖安全对齐 **Alpha 预发布版**，涵盖 `5` 个提交（主线 `3` 个 first-parent 合并：PR #8837、PR #8960、PR #8961）与 `488` 个改动文件（新增 `3`、修改 `485`；`+806 / -707` 行；含 `413` 个 `package.json` 与 `75` 个非清单文件；严格基于只读 git 标签对象与官方 Release 元数据核验，未执行动态运行）。
+
+### Node.js 下限 `^24.22.3 || >=26.13.1`、检查位置与内置运行时对齐
+
+- **精确 semver 范围与检查位置（`package.json:9`、`apps/cli/package.json:191`，PR #8837）**：将 `>=24.9.0` 替换为 `^24.22.3 || >=26.13.1`（等价 `>=24.22.3 <25.0.0-0 || >=26.13.1`）——允许 `24.x` 中 `>=24.22.3`（非严格相等）及 `>=26.13.1`（semver 语义包含 `27.x+`，但 CI 仅覆盖 `24.22.3`、最新 `24` 与浮动 `26`），排除 `<24.22.3`、全部 `25.x` 及 `26.0.0`–`26.13.0`。仓库无 `.npmrc` / `engineStrict`，CLI 启动链路（`apps/cli/src/{bin,installed-bin,profile-boot}.ts`）无运行时 `process.versions.node` 拦截，Python 开发载体（`python/sdk-runtime/src/deepseek_harness_runtime/__init__.py:14,147-152`）亦只改缺 `node` 提示而不查版本；严格 `=== '24.22.3'` 仅作用于 `scripts/run-gates.ts:113,496-501`（设 `DSH_NODE_COMPAT_BUILD=1` 时）、`scripts/primary-runtime/lock.json:2` + `prepare.ts:278` 与 `scripts/build-exe-for-python-sdk.ts:33-35,112-114,127-129,412-417`（`pkg --sea --targets node24.22.3-...`；`scripts/build-exe-for-ssh-helper.ts` 仍用浮动 `node24`）。
+- **安全依赖、Electron `^44.11.5`、Vendor 版本号与升级指南（PR #8837、PR #8960、PR #8961）**：在 `pnpm-workspace.yaml:19-23` 新增 `undici` `overrides`（`6.29.1` / `7.30.2` / `8.12.4`）并将 4 个直接依赖升至 `8.12.4`；桌面端 Electron 由 `^44.7.0` 升至 `^44.11.5`（`apps/desktop/package.json:76`、`verified-versions.json:3,8`），`node-addon-require-builtin` 由 `^0.1.9` 升至 `^0.1.10`（4 个清单及 `minimumReleaseAgeExclude`）；更新 `27` 个 `.github/workflows/*.yml`、`scripts/wine-windows-gates.sh` 及 3 个仅改注释的 TS 文件（`packages/boot/{app-boot,hmr}`、`packages/ptc-runtime/ptc-runtime-node`）；新增 `docs/upgrade-guide/v0.2.3-alpha.1/node-24-22-3/guide.{md,zh.md,i18n.yaml}`；PR #8960 将 `9` 个 `vendor/*` 包升至 `*-alpha.1`，PR #8961 将 `404` 个工作区清单升至 `0.2.3-alpha.2`。相较 `alpha.1` 零产品、UI、CLI、协议或插件业务逻辑改动。
+
+---
+
+## 前序预发布版：0.2.3-alpha.1（2026-11-22）
+
+详细改动见 [dsh/2026-11-22_0.2.3-alpha.1.md](dsh/2026-11-22_0.2.3-alpha.1.md)。
+
+### 版本概览
+
+`dsh-v0.2.3-alpha.1`（官方 GitHub Release `published_at` `2026-11-22 11:19:36 UTC+8` / `2026-11-22T03:19:36Z` UTC；早先 git 合并提交 `d98f5d68519` 于 `2026-11-22 00:45:52 +0800`；对应 `alpha.1`，不含后续 npm `alpha.2`）是承接祖先标签 `dsh-v0.2.2-rc.5`（`9c2670d3bce`，官方发布于 `2026-11-18 20:51:39 UTC+8`）的首个 `0.2.3` **Alpha 预发布版**，涵盖 `2,343` 个提交（主线 `240` 个 first-parent 合并）与 `7,260` 个改动文件（`+302,202 / -83,093` 行；新增 `25` 个生产包及 `apps/desktop-publisher`，移除 `2` 个包，新增 `55` 条并更新 `2` 条 `docs/upgrade-guide`；严格基于只读 git 标签对象与官方 Release 元数据核验，未执行动态运行）。
+
+### 连接器生态、远程鉴权、会话界面、实验组合包与安全迁移
+
+- **连接器账号、MCP OAuth、按需加载与 7 个独立连接器**：在 `dsh-base`/`dsh-web-app` 默认挂载 `@deepseek-ai/dsh-client-ui-connector-account`、`@deepseek-ai/dsh-mcp-account`、`@deepseek-ai/dsh-cli-account` 与 `@deepseek-ai/dsh-upstream-skills`，新增显式 MCP OAuth 授权/后台刷新与可选 `toolLoading: 'on-demand'`（经 `mcp__<server>__load_tools` 加载；普通服务默认仍为 `'eager'`）；新增 7 个未入 `OPTIONAL_BUNDLES` 的独立可选连接器：MCP OAuth 类 `@deepseek-ai/dsh-{linear,notion,tencent-docs}`（默认 `'on-demand'`）及 CLI 封装类 `@deepseek-ai/dsh-{feishu,wecom,tencent-meeting,dingtalk}`（**飞书**与**企业微信**仅支持 macOS 与 Windows `x64`，`@larksuite/cli` 安装脚本需 pnpm 审批）。
+- **Web 远程登录、可插拔鉴权与会话状态组件**：`dsh-web-app` 默认启用 `@deepseek-ai/dsh-client-remote-connection`（一次性二维码、私有登录链接与审批配对；桌面端窗口隐藏）、拆分后的 `@deepseek-ai/dsh-host-authentication-{token,desktop}`（桌面端私有 IPC Cookie、单主机 17 端口 Cookie 上限防 HTTP 431）、默认 `auth: 'required'` 的 `webServer` 路由、可停靠拖拽的 `@deepseek-ai/dsh-client-ui-session-panel` 与独立 `@deepseek-ai/dsh-client-ui-session-status`（Host 共享已读/未读 + `completionFailed`，插件须声明 `inject: ['uiSession.sessionStatus']`）。
+- **可选实验组合包（均默认关闭）**：`@deepseek-ai/dsh-experimental-plugin-market-bundle` 新增 Git 仓库插件索引（裸部分克隆复用宿主 Git/SSH 凭据）；新增 `@deepseek-ai/dsh-timeline`（任务树、阻塞项、可点击进度条、`/timeline`、`.timeline.json`、独立模型计费定时报告、「跟随对话」语言）；`@deepseek-ai/dsh-experimental-forge-bundle` 新增 **代码审阅页面**（目前仅 `forge-github` 经本机 `gh` 实现全局列表）、扩展 API（自定义视图、行注解、槽位、`forge/review-changed`）及 `@deepseek-ai/dsh-forge-gitlab`（经本机 `glab` 支持会话关联 GitLab MR，不含全局审阅列表）；`@deepseek-ai/dsh-cua-bundle` 扩至 `["darwin", "win32"]`，新增 `@deepseek-ai/dsh-cua-windows`（暂无 `systemInput`）、更名 `@deepseek-ai/dsh-cua-macos`（`useSystemInput`）、新增隐藏可选 `@deepseek-ai/dsh-cua-mcp`，并在启用 CUA 提供方后为标准模式/SDK/headless 默认提供 `cua_run_code`。
+- **安全、运行时与契约迁移（新增 `55` 条、更新 `2` 条升级指南）**：移除 `working_directory` 与子代理 `cwd`，`workspace-write` 随会话实时 `cwd` 移动（工作树 `.git` 写操作需额外审批或 `additionalWritableRoots`，Windows 忽略该项），工作树改用 `enter_worktree`/`exit_worktree`，归档清理工作树在沙箱外执行；新增 `ctx.deepseekAuth`（API 密钥提供方更名 **DeepSeek API**，并完整保留 `rc.5` 路由自动搜索与计费边界——免按次调用费但每次搜索仍额外消耗 `deepseek-v4-flash` 模型 token）；Cordis Core 升至 `4.0.0-rc.12`、Loader `1.0.0-rc.9`、Include `1.2.0`（YAML 1.2 与严格校验），新增 `dsh-client-config`、HMR `--patch` 热重载与标准模式默认 `cordis_inspect`；Node PTC 默认切为 `persistent-in-memory` 作用域 REPL 并彻底移除 `@deepseek-ai/dsh-experimental-ptc-runtime-python`；退役 `@deepseek-ai/dsh-personalized-recommendations` 并由 `dsh-web-app`/`dsh-sdk-app` 默认挂载；合并 `/office` 并内置 `pypdf`；恢复持久终端入口（默认关闭）；新增需手动配置的实验性 `@deepseek-ai/dsh-session-persistence-sqlite`（默认仍为 JSONL）。
+
+---
+
+## 前序预发布版：0.2.2-rc.5（2026-11-18）
 
 详细改动见 [dsh/2026-11-18_0.2.2-rc.5.md](dsh/2026-11-18_0.2.2-rc.5.md)。
 

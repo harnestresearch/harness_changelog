@@ -2,9 +2,41 @@
 
 English | [简体中文](../zh-CN/full/dsh.md) · [Highlight](../dsh.md) | **Full Detail**
 
-> See [dsh/README.md](dsh/README.md) for the five-platform technical index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering DeepSeek Harness (`@deepseek-ai/dsh` CLI/Web & `@deepseek-ai/dsh-desktop`, currently tracking prerelease `0.2.2-rc.5`).
+> See [dsh/README.md](dsh/README.md) for the five-platform technical index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering DeepSeek Harness (`@deepseek-ai/dsh` CLI/Web & `@deepseek-ai/dsh-desktop`, currently tracking prerelease `0.2.3-alpha.2`).
 
-## 0.2.2-rc.5 — Prerelease (2026-11-18)
+## 0.2.3-alpha.2 — Prerelease (2026-11-22)
+
+See [dsh/2026-11-22_0.2.3-alpha.2.md](dsh/2026-11-22_0.2.3-alpha.2.md) for full details.
+
+### Overview
+
+`dsh-v0.2.3-alpha.2` (official GitHub Release `published_at` `2026-11-22 19:00:39 UTC+8` / `2026-11-22T11:00:39Z` UTC; git merge commit `4b399c39a6d` at `2026-11-22 16:50:28 +0800`) is a runtime-floor and dependency-alignment **alpha prerelease** succeeding `dsh-v0.2.3-alpha.1` (`d98f5d68519`, published `2026-11-22 11:19:36 UTC+8`) across `5` commits (`3` first-parent merges: PR #8837, PR #8960, PR #8961) and `488` changed files (`3` added, `485` modified; `+806 / -707` lines; `413` `package.json` manifests + `75` non-manifest files; verified strictly from read-only git tag objects and official Release metadata without runtime execution).
+
+### Node.js Floor `^24.22.3 || >=26.13.1`, Enforcement Boundaries & Bundled Runtime Alignment
+
+- **Declared Semver Range & Check Locations (`package.json:9`, `apps/cli/package.json:191`, PR #8837)**: Replaces `>=24.9.0` with `^24.22.3 || >=26.13.1` (`>=24.22.3 <25.0.0-0 || >=26.13.1`): allows `24.x >= 24.22.3` (not strict equality) and `>=26.13.1` (including `27.x+` under semver, though CI only tests `24.22.3`, latest `24`, and floating `26`), while excluding `<24.22.3`, all `25.x`, and `26.0.0`–`26.13.0`. No `.npmrc` / `engineStrict`, no CLI startup `process.versions.node` blocker (`apps/cli/src/{bin,installed-bin,profile-boot}.ts`), and no Python `node --version` check (`python/sdk-runtime/src/deepseek_harness_runtime/__init__.py:14,147-152` updates missing-binary hint text only). Strict `=== '24.22.3'` is enforced in `scripts/run-gates.ts:113,496-501` (when `DSH_NODE_COMPAT_BUILD=1`), `scripts/primary-runtime/lock.json:2` + `prepare.ts:278`, and `scripts/build-exe-for-python-sdk.ts:33-35,112-114,127-129,412-417` (`pkg --sea --targets node24.22.3-...`; `scripts/build-exe-for-ssh-helper.ts` remains floating `node24`).
+- **Security Dependencies, Electron `^44.11.5`, Vendor Bumps & Upgrade Guide (PR #8837, PR #8960, PR #8961)**: Adds `pnpm-workspace.yaml:19-23` `undici` overrides (`6.29.1` / `7.30.2` / `8.12.4`) and bumps 4 direct `undici` deps to `8.12.4`; bumps Desktop `electron` `^44.7.0` → `^44.11.5` (`apps/desktop/package.json:76`, `verified-versions.json:3,8`) and `node-addon-require-builtin` `^0.1.9` → `^0.1.10` (`4` manifests + `minimumReleaseAgeExclude`); updates `27` `.github/workflows/*.yml` files, `scripts/wine-windows-gates.sh`, and `3` comment-only TS files (`packages/boot/{app-boot,hmr}`, `packages/ptc-runtime/ptc-runtime-node`); adds `docs/upgrade-guide/v0.2.3-alpha.1/node-24-22-3/guide.{md,zh.md,i18n.yaml}`; bumps `9` `vendor/*` packages to `*-alpha.1` (PR #8960) and `404` workspace manifests to `0.2.3-alpha.2` (PR #8961). Zero product, UI, CLI, protocol, or plugin runtime logic changes over `alpha.1`.
+
+---
+
+## Prior Prerelease: 0.2.3-alpha.1 (2026-11-22)
+
+See [dsh/2026-11-22_0.2.3-alpha.1.md](dsh/2026-11-22_0.2.3-alpha.1.md) for full details.
+
+### Overview
+
+`dsh-v0.2.3-alpha.1` (official GitHub Release `published_at` `2026-11-22 11:19:36 UTC+8` / `2026-11-22T03:19:36Z` UTC; git merge commit `d98f5d68519` at `2026-11-22 00:45:52 +0800`; covers `alpha.1` only, not npm `alpha.2`) is the first `0.2.3` **alpha prerelease** succeeding ancestor tag `dsh-v0.2.2-rc.5` (`9c2670d3bce`, published `2026-11-18 20:51:39 UTC+8`) across `2,343` commits (`240` first-parent merges) and `7,260` changed files (`+302,202 / -83,093` lines; `25` new production packages + `apps/desktop-publisher`, `2` removed packages, `55` added + `2` updated `docs/upgrade-guide` entries; verified strictly from read-only git tag objects and official Release metadata without runtime execution).
+
+### Connectors, Remote Auth, Session Surfaces, Experimental Bundles & Security Migrations
+
+- **Connector Accounts, MCP OAuth, On-Demand MCP Loading & 7 Standalone Connectors**: Mounts `@deepseek-ai/dsh-client-ui-connector-account`, `@deepseek-ai/dsh-mcp-account`, `@deepseek-ai/dsh-cli-account`, and `@deepseek-ai/dsh-upstream-skills` by default (`dsh-base`/`dsh-web-app`), adds explicit MCP OAuth + background refresh and opt-in `toolLoading: 'on-demand'` (`mcp__<server>__load_tools`; general servers default to `'eager'`), and introduces 7 standalone optional connector packages (NOT in `OPTIONAL_BUNDLES`): MCP OAuth `@deepseek-ai/dsh-{linear,notion,tencent-docs}` (defaulting to `'on-demand'`) and CLI wrappers `@deepseek-ai/dsh-{feishu,wecom,tencent-meeting,dingtalk}` (`feishu` & `wecom` support macOS & Windows `x64` only; `@larksuite/cli` install script requires pnpm approval).
+- **Web Remote Login, Pluggable Auth & Session Surfaces**: Default-on in `dsh-web-app`: `@deepseek-ai/dsh-client-remote-connection` (one-use QR login, tokenized links, owner-approved browser pairing; omitted in Desktop window), extracted `@deepseek-ai/dsh-host-authentication-{token,desktop}` (private Desktop IPC cookie, 17-authority per-hostname cookie cap preventing HTTP 431), `webServer` default `auth: 'required'`, dockable `@deepseek-ai/dsh-client-ui-session-panel`, and extracted `@deepseek-ai/dsh-client-ui-session-status` (Host-shared read/unread + `completionFailed`, requiring `inject: ['uiSession.sessionStatus']`).
+- **Experimental Bundles (OFF by Default)**: Extends `@deepseek-ai/dsh-experimental-plugin-market-bundle` with Git repo index sources (private repos via Host Git/SSH creds, locked bare partial clones); adds `@deepseek-ai/dsh-timeline` (task trees, blockers, clickable progress bar, `/timeline`, `.timeline.json`, timed model-billed reports, `Follow chat` language); expands `@deepseek-ai/dsh-experimental-forge-bundle` with a **Code review** page (GitHub PRs only via `forge-github`'s `viewer` / Host `gh` CLI), forge extension seams (lenses, annotations, slots, `forge/review-changed`), and `@deepseek-ai/dsh-forge-gitlab` (Session-bound GitLab MRs via Host `glab` CLI, not global review lists); expands optional `@deepseek-ai/dsh-cua-bundle` to `["darwin", "win32"]` with `@deepseek-ai/dsh-cua-windows` (no `systemInput` yet), renamed `@deepseek-ai/dsh-cua-macos` (`useSystemInput`), hidden optional `@deepseek-ai/dsh-cua-mcp`, and default `cua_run_code` in Standard/SDK/headless when a CUA provider is mounted.
+- **Security, Runtime & Contract Migrations (`55` New + `2` Updated Upgrade Guides)**: Removes `working_directory` & subagent `cwd`, aligns `workspace-write` to live Session `cwd` (worktree `.git` writes need extra approval or `additionalWritableRoots`, ignored on Windows), switches worktrees to `enter_worktree`/`exit_worktree`, runs archive worktree cleanup outside read-only sandboxes; introduces `ctx.deepseekAuth` (relabeling API-key provider to **DeepSeek API** while preserving `rc.5`'s route-based automatic search and billing boundary—no per-search fee, still consumes auxiliary `deepseek-v4-flash` tokens); upgrades Cordis Core to `4.0.0-rc.12`, Loader `1.0.0-rc.9`, Include `1.2.0` (YAML 1.2, strict entry validation), adds `dsh-client-config`, HMR `--patch` reload, and default Standard-mode `cordis_inspect`; switches Node PTC to `persistent-in-memory` scoped REPL by default and removes `@deepseek-ai/dsh-experimental-ptc-runtime-python`; retires `@deepseek-ai/dsh-personalized-recommendations` into default-on `dsh-web-app`/`dsh-sdk-app` rows; consolidates `/office` + `pypdf`; restores persistent terminal toggle (still off by default); and adds manual-config `@deepseek-ai/dsh-session-persistence-sqlite` (JSONL remains default).
+
+---
+
+## Prior Prerelease: 0.2.2-rc.5 (2026-11-18)
 
 See [dsh/2026-11-18_0.2.2-rc.5.md](dsh/2026-11-18_0.2.2-rc.5.md) for full details.
 
