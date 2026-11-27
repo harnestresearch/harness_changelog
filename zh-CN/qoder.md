@@ -2,9 +2,21 @@
 
 [English](../qoder.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](full/qoder.md)
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 58 个历史版本索引（桌面端 macOS 最新 `0.5.13`、Windows/Linux 最新 `0.5.7`、iOS 最新 `1.46.0`、Android 最新 `0.10.0`）见 [qoder/README.md](qoder/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 59 个历史版本索引（桌面端 `mac`/`win`/`ubuntu` 最新 `0.5.20`、iOS 最新 `1.46.0`、Android 最新 `0.10.0`；`0.5.13` 至 `0.5.20` 之间的中间桌面版本尚未入仓）见 [qoder/README.md](qoder/README.md)。
 
-## 最新桌面版本：0.5.13（macOS，2026-11-16）
+## 最新桌面版本：0.5.20（macOS / Windows / Linux，2026-11-25）
+
+核心亮点见 [qoder/2026-11-25_0.5.20.md](qoder/2026-11-25_0.5.20.md)，完整技术细节见 [full/qoder/2026-11-25_0.5.20.md](full/qoder/2026-11-25_0.5.20.md)。_（官方标题日期 `November 25, 2026` — "Cross-Device Collaboration and Cloud Tasks"；三端更新清单 `releaseDate` 为 macOS `2026-11-25T14:26:16.356Z` / Windows `14:34:35.952Z` / Linux `14:13:26.874Z`。中间桌面版本 `0.5.14` 与 `0.5.16`–`0.5.19` 尚未入仓，`0.5.13` **并非**本对基线——本篇仅覆盖 `0.5.18 → 0.5.20` 静态对比，并刻意跨过无官方 changelog 条目、未下载未分析的 `0.5.19`。macOS `arm64` 全量静态分析；Windows `x64` `exe`+`app.zip` 与 Linux `amd64` `.deb` 核验包体积/SHA-256，内部文件账与 Authenticode 核验沿用静态拆包记录、未在此重解包，NSIS 未反汇编，`.rpm` 仅记清单 SHA-256；未覆盖 macOS `x64`、Windows `arm64`、Android、iOS；未运行验证。）_
+
+### 核心亮点
+
+- **云端任务、跨设备协作与本地任务恢复**：官方说明引入桌面端云端任务、从已连接设备工作区下载文件及按权限管理自动化、退出/更新后恢复未完成本地任务。静态差分证实新增 `14` 条 `cloud-session:*` IPC、`automations.*` IPC 与 `+6` 条 `AUTOMATION_TASK_*` 错误码（`2 → 8`）、`19` 条 `automationPeer.*` 渲染键、`automations.read.v1`/`manage.v1`、`chatSession.fileDownload.*` / `Resources/runtime/file-transfer.cjs`，以及 `chat-session-recovery:*` / `.recoveryPhase` / `20261119-00-chat-session-restart-resumption.sql`（云端与跨设备均依赖服务端，未动态验证）。
+- **受管设备登录限制、归档按组操作、超大字体与 125% 缩放**：官方说明支持企业管理员限制受管设备仅用批准组织企业账号登录、归档本地任务按组恢复/删除（搜索结果批量删除仅影响匹配项）、超大字体与 `125%` 独立缩放。静态证实新增 `auth.deviceAccountBlocked.{confirm,description}`、`"Device account policy rejected the current login"`、`"Enterprise VPC sign-in"`、`restoreGroupTasks`/`archivedGroupMore`/`deleteArchiveSearchResults*`，以及 `fontSizeExtraLarge`/`uiScaleExtraLarge` 入口串（未见明文排版参数，企业策略依赖服务端）。
+- **问题修复与未公告运行时/扩展改动**：官方修复涵盖数据目录迁移后插件安装失败及受限 Windows 插件后台服务无法启动（仅局部/间接静态线索：worker 归档安全校验、`pluginHost.js` `+1,487` B、移除 `WindowsPluginJob.cs`/`windows-job.ps1`，无法逐条归因）、后台断线阻塞下一轮自动化（`20261121-00-automation-run-retry-count.sql` 与 `20261121-01-automation-manual-pending-index.sql`）、有效模型无法开始会话（仅间接登出/重选提示）与 Remote Control 消息乱序（`20261123-01-async-question-order-clock` 与 `.messageOrder`）。未公告改动包括 Electron 维持 `43.8.4`、`qodercli` 跨 minor 升至 `1.1.96-hotfix.8`（`−826,457` B）、Agent SDK `1.0.62-alpha.9`、`qoder.knowledge.center` 拆为 `qoder.knowledge.wiki` + `qoder.qmind`、`@ali/qoder-text-sdk` `0.5.2`、`@qoder-space/in-app-browser`、Qwen 登录文案、`statusline` 提示拆分及应用图标刷新。
+
+---
+
+## 更早入仓桌面版本：0.5.13（macOS，2026-11-16）
 
 核心亮点见 [qoder/2026-11-16_0.5.13.md](qoder/2026-11-16_0.5.13.md)，完整技术细节见 [full/qoder/2026-11-16_0.5.13.md](full/qoder/2026-11-16_0.5.13.md)。_（发布日期依据更新清单 `0.5.13.yml` 的 `releaseDate: 2026-11-16T13:05:09.530Z`；仅基于官方 macOS `arm64` 双包 `0.5.12 → 0.5.13` 静态解包对比，未逆向 Windows 与 Linux 安装包，未运行被测程序。）_
 

@@ -2,9 +2,21 @@
 
 [English](../kimi.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](full/kimi.md)
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 185 个历史版本索引（Windows 最新 `3.2.27`、iOS 最新 `3.1.8`，独立 Linux 端暂未发布）见 [kimi/README.md](kimi/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 186 个历史版本索引（桌面端 `mac`/`win` 最新 `3.2.29`、iOS 最新 `3.1.8`，独立 Linux 端暂未发布；`3.2.25` 至 `3.2.29` 之间的中间桌面版本尚未全部入录或完成解析）见 [kimi/README.md](kimi/README.md)。
 
-## 最新桌面端深度解析版本：3.2.25（2026-11-05，macOS）
+## 最新桌面端深度解析版本：3.2.29（2026-11-26，`mac`、`win`）
+
+核心亮点见 [kimi/2026-11-26_3.2.29.md](kimi/2026-11-26_3.2.29.md)，完整技术细节见 [full/kimi/2026-11-26_3.2.29.md](full/kimi/2026-11-26_3.2.29.md)。_（官方发布日志标题日期 `2026-11-26`，基线 `3.2.28` 日期 `2026-11-18`。`3.2.25` 之后的中间桌面版本尚未全部入录——仓内无 `3.2.28` 条目，`3.2.26`/`3.2.27` 仍为 `win` 端 `TODO` 占位——因此 `3.2.25` **并非**本对基线，本文仅覆盖官方 macOS `arm64` + Windows `x64` 双包的 **`3.2.28 → 3.2.29`** 静态差分。macOS Intel 未取样；官方无 Linux 包，记为「无」；iOS/Android 不在范围；未运行目标二进制。）_
+
+### 核心亮点
+
+- **Markdown 预览大纲导航与全局搜索 UI 优化（已坐实）**：官方说明新增 Markdown 文件预览大纲导航（`obsidianToc` 在 `3.2.28` 为 `0` 次、`3.2.29` 在 macOS/Windows 的 `WorkbenchPanel` 与中英文语言包落地）并优化全局搜索 UI/交互（新增 `showMoreMatches` 与 `searchOlderConversations` 两条文案键，双端 `GlobalSearchModal` 更新并新增独立样式）。
+- **模块级对应项与仅官方日志条目**：工作台文件树展开收起（新增 `WorkbenchFileSurface`）、远程控制权限同步与全自动误弹审批（`permission-flow`、`RemoteControl*`、`ApprovalPrompt` 更新）、听写发送后误回填（`MessageList`、`ConversationView` 更新）与市场插件授权过期（新增 `use-plugin-install-flow` 及插件页更新）均仅证实至模块级，未逐行验证修复实现；移动端键盘遮挡插件/技能列表、资料刷新侧栏跳动与图片预览缩放错目标仅来自官方日志、未独立锁定包内落点（不将 preload 移除 `pinch-zoom` 作为缩放修复的行级证据）。
+- **官方未提及的 `restic` 本地文件版本历史与运行时更新**：官方 changelog 未提及的最大变更是双端新增基于随包 `restic` `0.19.1` 的本地文件版本历史子系统（`0 → 13` 个 `kimi-agent:file-history-*` IPC 通道、`18` 个主进程新模块前缀、`restic-bsd-2-clause.txt`，以及 `zh-CN` 新增 `113` 个 key 中的 `111` 个，另 `2` 个为全局搜索文案），含 `fileHistoryAbEligible` / `isFileHistoryRuntimeEnabled` 灰度标记，不代表对所有用户立即可见。Electron/Chromium 维持 `43.7.7` / `150.0.7871.250`，`daimon` 升至 `1.0.15`（`1.0.14 → 1.0.15`），`gateway.asar` 双端各增约 `6.4` MB。
+
+---
+
+## 更早深度解析桌面版本：3.2.25（2026-11-05，macOS）
 
 核心亮点见 [kimi/2026-11-05_3.2.25.md](kimi/2026-11-05_3.2.25.md)，完整技术细节见 [full/kimi/2026-11-05_3.2.25.md](full/kimi/2026-11-05_3.2.25.md)。
 

@@ -2,14 +2,14 @@
 
 [English](../../../full/kimi/README.md) | 简体中文 · [精简版 (Highlight)](../../kimi/README.md) | **完整详情 (Full Detail)**
 
-覆盖 Kimi 自 `1.10.1`（2024-09-01）至 `3.2.27`（2026-11-12）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **185** 个版本条目的完整演进索引（含 **88** 个桌面/跨端版本与 **97** 个移动端独立版本）。
+覆盖 Kimi 自 `1.10.1`（2024-09-01）至 `3.2.29`（2026-11-26）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **186** 个版本条目的完整演进索引（含 **89** 个桌面/跨端版本与 **97** 个移动端独立版本；`3.2.25` 之后的中间桌面版本尚未全部入录——`3.2.28` 尚未入仓，`3.2.26`/`3.2.27` 仍为 `win` 端 `TODO` 占位）。
 
 ## 五端覆盖概览
 
 | 平台 | 分发渠道 / 包名 | 收录版本数 | 版本范围 | 最新版本 |
 |---|---|---|---|---|
-| `mac` | macOS（`Kimi.app` 官方 CDN & Homebrew Cask） | 64 | `2.0.4` → `3.2.25` | [3.2.25](2026-11-05_3.2.25.md) |
-| `win` | Windows（`MoonshotAI.Kimi` 官方安装包 & Winget） | 82 | `2.0.2` → `3.2.27` | [3.2.27](2026-11-12_3.2.27.md) |
+| `mac` | macOS（`Kimi.app` 官方 CDN & Homebrew Cask） | 65 | `2.0.4` → `3.2.29` | [3.2.29](2026-11-26_3.2.29.md) |
+| `win` | Windows（`MoonshotAI.Kimi` 官方安装包 & Winget） | 83 | `2.0.2` → `3.2.29` | [3.2.29](2026-11-26_3.2.29.md) |
 | `ubuntu` | 独立 Kimi Linux 桌面客户端 | 0 | _暂无独立发布版本_ | — |
 | `ios` | iOS App Store（`com.moonshot.kimichat`） | 122 | `1.10.1` → `3.1.8` | [3.1.8](2026-08-11_3.1.8.md) |
 | `android` | Android（`com.moonshot.kimichat` 官方 APK CDN 与应用市场） | 35 | `2.3.1` → `android-3.1.5` | [android-3.1.5](2026-10-23_android-3.1.5.md) |
@@ -18,6 +18,7 @@
 
 | 版本 | 覆盖平台 | 发布日期 | 核心变更摘要 |
 |---|---|---|---|
+| [3.2.29](2026-11-26_3.2.29.md) | `mac`、`win` | 2026-11-26 | `3.2.28 → 3.2.29` macOS `arm64` + Windows `x64` 双包静态差分（Sentry `3.2.28+e69611da7c → 3.2.29+9f88ce6cda`；Electron `43.7.7` / Chromium `150.0.7871.250` 未变；`daimon` `1.0.14 → 1.0.15`；`app.asar` `+915/−885/44` 且 `44` 修改路径一致；`gateway.asar` `+6.4` MB）：官方未提及的 `restic` `0.19.1` 本地文件版本历史（`0 → 13` `kimi-agent:file-history-*` 通道、18 个主进程分块、`zh-CN` 新增 `113` 键中占 `111` 键、含 `fileHistoryAbEligible`/`isFileHistoryRuntimeEnabled` 开关），坐实 `obsidianToc` 与 `GlobalSearchModal`（`showMoreMatches`/`searchOlderConversations`），模块级对应文件树/权限/听写/插件授权变更，其余三项标注仅来自官方日志 |
 | [3.2.27](2026-11-12_3.2.27.md) | `win` | 2026-11-12 | `TODO`（`win`）— _详细技术差分待补充_ |
 | [3.2.26](2026-11-06_3.2.26.md) | `win` | 2026-11-06 | `TODO`（`win`）— _详细技术差分待补充_ |
 | [3.2.25](2026-11-05_3.2.25.md) | `mac`、`win` | 2026-11-05 | Electron 43.7.7 / Chromium 150；内嵌 `daimon-bundle` v1.0.6（`kimi-code` v0.5.1 + Node 24.15 + Python 3.12 + `uv`）、5 条 MCP 集成链路（含 `WebMCP` CDP 与 `kimi-cu`）、7 个原生 `.node` 模块、`gateway.asar` OpenClaw 及沙箱 WASM 工具链 |

@@ -2,9 +2,19 @@
 
 [English](../../full/qoder.md) | 简体中文 · [精简版 (Highlight)](../qoder.md) | **完整详情 (Full Detail)**
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 58 个历史版本索引（桌面端 macOS 最新 `0.5.13`、Windows/Linux 最新 `0.5.7`、iOS 最新 `1.46.0`、Android 最新 `0.10.0`）见 [qoder/README.md](qoder/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 59 个历史版本索引（桌面端 `mac`/`win`/`ubuntu` 最新 `0.5.20`、iOS 最新 `1.46.0`、Android 最新 `0.10.0`；`0.5.13` 至 `0.5.20` 之间的中间桌面版本尚未入仓）见 [qoder/README.md](qoder/README.md)。
 
-## 最新桌面版本：0.5.13（macOS，2026-11-16）
+## 最新桌面版本：0.5.20（macOS / Windows / Linux，2026-11-25）
+
+详细改动见 [qoder/2026-11-25_0.5.20.md](qoder/2026-11-25_0.5.20.md)。基于 **`0.5.18 → 0.5.20`** 三端官方包（macOS `arm64` / Windows `x64` / Linux `amd64`）静态对比（官方 changelog `November 25, 2026` — *"Cross-Device Collaboration and Cloud Tasks"*；更新清单 `releaseDate` 为 macOS `2026-11-25T14:26:16.356Z` / Windows `14:34:35.952Z` / Linux `14:13:26.874Z`，三端构建 commit 同为 `aacc1a53…`；中间桌面版 `0.5.14` 与 `0.5.16`–`0.5.19` 尚未入仓，`0.5.13` **并非**对比基线，且刻意跨过无官方 changelog 条目、未下载未分析的 `0.5.19`；macOS `arm64` 全量静态解包分析，Windows `x64` `exe`+`app.zip` 与 Linux `amd64` `.deb` 核验体积与清单 SHA-256、其内部文件树与 Authenticode 核验沿用静态拆包记录且未在此重解包，Windows NSIS 未反汇编，`.rpm` 仅记录清单 SHA-256；未覆盖 macOS `x64`、Windows `arm64`、Android、iOS；未运行客户端）：
+
+- **云端任务、跨设备协作与本地任务恢复（`electronMain.js` `+396,950` B）**：新增 `14` 条 `cloud-session:*` IPC 与 `cloudSessionMainService`、扩展 `automations.*` IPC 与 `+6` 条 `AUTOMATION_TASK_*` 错误码（渲染层 `2 → 8`；`AUTOMATION_UNREADABLE` 与 `automation_heartbeat_run_now`/`scheduled` 在 `0.5.18` 已存在）、`19` 条 `automationPeer.*` 键 + `downloadArtifact` + `automations.read.v1`/`manage.v1` + `chatSession.fileDownload.*` / `Resources/runtime/file-transfer.cjs`（`peerDeviceId` 在 `0.5.18` 已存在），以及 `chat-session-recovery:{changed,decide,get}` / `.recoveryPhase` / `20261119-00-chat-session-restart-resumption.sql`；云端与跨设备授权粒度均依赖服务端，未做运行验证。
+- **受管设备登录、归档按组操作、缩放入口与官方修复映射**：新增 `auth.deviceAccountBlocked.{confirm,description}`、`"Device account policy rejected the current login"`、`"Enterprise VPC sign-in"`、worker 浏览器登录迁移文案（`"Qoder PAT sign-in is no longer supported..."`）及三条独立企业/组织插件锁定字符串（`cannot be disabled.` / `cannot be uninstalled.`）；新增 `restoreGroupTasks`/`archivedGroupMore`/`deleteArchiveSearchResults*`（`archived_sessions` 系 `0.5.18` 既有 Codex 历史目录校验，非新增 SQLite 表）与 `fontSizeExtraLarge`/`uiScaleExtraLarge` 入口字符串（无明文排版参数）。官方四项修复按证据界定：自动化断线阻塞（`20261121-00-automation-run-retry-count.sql`、`20261121-01-automation-manual-pending-index.sql`）、Remote Control 消息顺序（`20261123-01-async-question-order-clock`、`.messageOrder`）、迁移后插件安装失败与受限 Windows 后台服务启动（仅局部/间接静态线索：worker 归档/符号链接校验、`pluginHost.js` `+1,487` B、移除 `Resources/plugin-lifecycle/{WindowsPluginJob.cs,windows-job.ps1}`）及有效模型启动会话（仅间接登出/重选引导文案）。
+- **未公告运行时、扩展与依赖变化**：Electron 保持 `43.8.4`；`qodercli` / worker 跨 minor 升至 `1.1.96-hotfix.8`（`qoder-worker-runtime.obf.mjs` `−826,457` B，解码串 `14,658 → 13,966`；新增 `dist/_worker/qoder/{agent-creator,skill-creator,hook-config}/SKILL.md` 并保留 `dist/_worker/builtin/*/SKILL.md`）；Agent SDK `1.0.62-alpha.2 → alpha.9`；`@ali/qoder-browser-use-sdk` `0.4.2 → 0.4.3`；新增 `@ali/qoder-text-sdk` `0.5.2`（以 `app/out/qoder-text/` 取代 `Resources/dynamic-text/qoder.json`）与 `@qoder-space/in-app-browser`；内置扩展 `qoder.knowledge.center` 拆为 `qoder.knowledge.wiki`（`0.1.0`）+ `qoder.qmind`（`0.1.1`）（`12 → 13` 个，`catalog.v1.json` `+3,881` B）；另含 Qwen 登录文案、`statusline` Qoder 可选积分提示词拆分、视频交付说明（`mp4`/OSS 签名 URL）、`qoder-security` 引导脚本 JSON/SHA-256 加固、双主题应用图标刷新与 Chrome 连接器 `1.7.7 → 1.7.10`。
+
+---
+
+## 更早入仓桌面版本：0.5.13（macOS，2026-11-16）
 
 详细改动见 [qoder/2026-11-16_0.5.13.md](qoder/2026-11-16_0.5.13.md)。基于官方 macOS `arm64` 双包（`0.5.12` → `0.5.13`，`Qoder-mac-arm64.zip` `342,120,251` → `342,127,454` B，`+7,203` B；日期依据更新清单 `0.5.13.yml` 的 `releaseDate: 2026-11-16T13:05:09.530Z`，其中 `releaseNotes: {}` 为空不表示官方无网页说明且不把文件 `mtime` 当作 `Last-Modified`；Windows/Linux 未逆向，未运行客户端）：
 

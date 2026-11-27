@@ -2,9 +2,21 @@
 
 English | [简体中文](zh-CN/kimi.md) · **Highlight** | [Full Detail](full/kimi.md)
 
-> See [kimi/README.md](kimi/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 185 releases (up to `3.2.27` on Windows and `3.1.8` on iOS; standalone Linux unreleased).
+> See [kimi/README.md](kimi/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 186 releases (up to `3.2.29` Desktop across `mac` and `win`, and `3.1.8` on iOS; standalone Linux unreleased; intermediate desktop versions between `3.2.25` and `3.2.29` are not all cataloged or analyzed in this repository).
 
-## Latest Analyzed Desktop Release: 3.2.25 (2026-11-05, macOS)
+## Latest Analyzed Desktop Release: 3.2.29 (2026-11-26, `mac`, `win`)
+
+See [kimi/2026-11-26_3.2.29.md](kimi/2026-11-26_3.2.29.md) for highlights, or [full/kimi/2026-11-26_3.2.29.md](full/kimi/2026-11-26_3.2.29.md) for full technical details. _(Official release-notes heading date `2026-11-26`; baseline `3.2.28` date `2026-11-18`. Intermediate desktop versions after `3.2.25` are not all cataloged in this repository—`3.2.28` has no entry yet and `3.2.26`/`3.2.27` remain Windows-only `TODO` placeholders—so `3.2.25` is **not** the baseline; this entry covers strictly the **`3.2.28 → 3.2.29`** static dual-package diff across official macOS `arm64` and Windows `x64` installers. macOS Intel was not sampled; Linux is officially not provided; iOS/Android out of scope; not executed at runtime.)_
+
+### Highlights
+
+- **Markdown Preview Outline Navigation & Global Search UI (Confirmed Statically)**: Official notes introduce outline navigation in Markdown preview (`obsidianToc` `0` in `3.2.28` → present in `3.2.29` `WorkbenchPanel` and `en-US`/`zh-CN` locales across macOS and Windows) and global search UI/interaction improvements (`showMoreMatches` and `searchOlderConversations` added alongside updated `GlobalSearchModal` JS + newly added CSS).
+- **Module-Level Corroborated & Official-Only Fixes**: Workbench file tree expand/collapse (`WorkbenchFileSurface` added), remote-control permission-mode sync & full-auto spurious approval (`permission-flow`, `RemoteControl*`, `ApprovalPrompt` updated), dictation post-send refill (`MessageList`, `ConversationView` updated), and marketplace plugin authorization expiry (`use-plugin-install-flow` added + plugin pages updated) are corroborated at the module level only (not line-by-line verified). Mobile keyboard obscuring the plugin/skill list, sidebar order jumping on profile refresh, and image preview zooming the wrong target come from the official `3.2.29` notes without independently located in-package targets (`pinch-zoom` preload removal is not cited as line-level zoom-fix evidence).
+- **Unannounced `restic`-Backed Local File Version History & Runtime Updates**: Not mentioned in the official changelog, `3.2.29` adds a local file version history subsystem on both macOS and Windows (`restic` `0.19.1` binaries, `0 → 13` `kimi-agent:file-history-*` IPC channels, `18` new main-process chunk stems, `restic-bsd-2-clause.txt`, and `111` of `113` new `zh-CN` keys alongside the `2` global search keys), with `fileHistoryAbEligible` / `isFileHistoryRuntimeEnabled` indicating likely A/B gating. Electron/Chromium remain `43.7.7` / `150.0.7871.250`, `daimon` updates `1.0.14 → 1.0.15`, and `gateway.asar` grows `~6.4` MB on both platforms.
+
+---
+
+## Earlier Analyzed Desktop Release: 3.2.25 (2026-11-05, macOS)
 
 See [kimi/2026-11-05_3.2.25.md](kimi/2026-11-05_3.2.25.md) for highlights, or [full/kimi/2026-11-05_3.2.25.md](full/kimi/2026-11-05_3.2.25.md) for full technical details.
 

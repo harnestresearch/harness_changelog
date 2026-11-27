@@ -12,14 +12,14 @@
 
 | Harness | 最新版本 | 发布日期 | 最新核心亮点 | 完整版本索引（精简版） | 完整技术详情（Full Detail） |
 |---|---|---|---|---|---|
-| **Antigravity** | `2.32.2`（Hub）/ `2.7.0`（IDE） | 2026-11-17（包 Last-Modified）/ 未确认 | [antigravity.md](antigravity.md) | [antigravity/](antigravity/README.md)（共 5 个版本） | [full/antigravity/](full/antigravity/README.md) |
-| **Claude** | `5.11492.5` / `1.261113.19`（`android`）/ `1.261109.19`（`ios`） | 2026-11-14 | [claude.md](claude.md) | [claude/](claude/README.md)（共 533 个版本） | [full/claude/](full/claude/README.md) |
+| **Antigravity** | `2.35.2`（Hub）/ `2.7.0`（IDE） | 2026-11-25（包 Last-Modified）/ 未确认 | [antigravity.md](antigravity.md) | [antigravity/](antigravity/README.md)（共 7 个版本） | [full/antigravity/](full/antigravity/README.md) |
+| **Claude** | `5.11492.5` / `1.261124.19`（`android`）/ `1.261109.19`（`ios`） | 2026-11-25（Uptodown 镜像） | [claude.md](claude.md) | [claude/](claude/README.md)（共 534 个版本） | [full/claude/](full/claude/README.md) |
 | **ChatGPT / Codex** | `26.1111.2228.0`（`win`）/ `26.1111.21308`（`mac`、`ubuntu`）/ `1.2026.314`（`android`）/ `1.2026.307`（`ios`） | 2026-11-16（APKPure 归档） | [codex.md](codex.md) | [codex/](codex/README.md)（共 418 个统一版本） | [full/codex/](full/codex/README.md) |
 | **Cursor** | `3.30.14` / `1.17.0`（`ios`） | 2026-11-14 | [cursor.md](cursor.md) | [cursor/](cursor/README.md)（共 446 个版本） | [full/cursor/](full/cursor/README.md) |
 | **DSH (DeepSeek Harness)** | `0.2.3-alpha.2`（预发布） | 2026-11-22 | [dsh.md](dsh.md) | [dsh/](dsh/README.md)（共 5 个版本） | [full/dsh/](full/dsh/README.md) |
 | **Grok Bot** | `1.2.0` / `1.25.0`（`ios`） | 2026-11-17（包 Last-Modified） | [grok-bot.md](grok-bot.md) | [grok-bot/](grok-bot/README.md)（共 115 个版本） | [full/grok-bot/](full/grok-bot/README.md) |
-| **Kimi** | `3.2.27` / `3.1.8`（`ios`） | 2026-11-12 | [kimi.md](kimi.md) | [kimi/](kimi/README.md)（共 185 个版本） | [full/kimi/](full/kimi/README.md) |
-| **Qoder** | `0.5.13`（`mac`）/ `0.5.7`（`win`、`ubuntu`）/ `1.46.0`（`ios`）/ `0.10.0`（`android`） | 2026-11-16 | [qoder.md](qoder.md) | [qoder/](qoder/README.md)（共 58 个版本） | [full/qoder/](full/qoder/README.md) |
+| **Kimi** | `3.2.29`（`mac`、`win`）/ `3.1.8`（`ios`） | 2026-11-26 | [kimi.md](kimi.md) | [kimi/](kimi/README.md)（共 186 个版本） | [full/kimi/](full/kimi/README.md) |
+| **Qoder** | `0.5.20`（`mac`、`win`、`ubuntu`）/ `1.46.0`（`ios`）/ `0.10.0`（`android`） | 2026-11-25 | [qoder.md](qoder.md) | [qoder/](qoder/README.md)（共 59 个版本） | [full/qoder/](full/qoder/README.md) |
 | **WorkBuddy** | `5.9.4`（国内 `5.11.0`）/ `2.9.1` | 2026-11-13 | [workbuddy.md](workbuddy.md) | [workbuddy/](workbuddy/README.md)（共 133 个版本） | [full/workbuddy/](full/workbuddy/README.md) |
 | **ZCode** | `3.18.2` | 2026-11-13 | [zcode.md](zcode.md) | [zcode/](zcode/README.md)（共 123 个版本） | [full/zcode/](full/zcode/README.md) |
 

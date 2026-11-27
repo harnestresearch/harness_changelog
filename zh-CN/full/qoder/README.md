@@ -2,15 +2,15 @@
 
 [English](../../../full/qoder/README.md) | 简体中文 · [精简版 (Highlight)](../../qoder/README.md) | **完整详情 (Full Detail)**
 
-覆盖 Qoder 自 `1.24.1`（2026-07-16）至 `0.5.13`（2026-11-16）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **58** 个版本条目的完整演进索引（含 **29** 个桌面/跨端版本与 **29** 个移动端独立版本）。
+覆盖 Qoder 自 `1.24.1`（2026-07-16）至 `0.5.20`（2026-11-25）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **59** 个版本条目的完整演进索引（含 **30** 个桌面/跨端版本与 **29** 个移动端独立版本；中间桌面版本 `0.5.14` 与 `0.5.16`–`0.5.19` 尚未入仓）。
 
 ## 五端覆盖概览
 
 | 平台 | 分发渠道 / 包名 | 收录版本数 | 版本范围 | 最新版本 |
 |---|---|---|---|---|
-| `mac` | macOS（`Qoder.app` 官方 CDN & Homebrew Cask） | 29 | `0.1.0` → `0.5.13` | [0.5.13](2026-11-16_0.5.13.md) |
-| `win` | Windows（`Alibaba.Qoder` 官方安装包 & Winget） | 27 | `0.1.0` → `0.5.7` | [0.5.7](2026-11-09_0.5.7.md) |
-| `ubuntu` | Ubuntu / Linux（`Qoder-linux-amd64.deb` 与 `.rpm` 官方源） | 27 | `0.1.0` → `0.5.7` | [0.5.7](2026-11-09_0.5.7.md) |
+| `mac` | macOS（`Qoder.app` 官方 CDN & Homebrew Cask） | 30 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
+| `win` | Windows（`Alibaba.Qoder` 官方安装包 & Winget） | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
+| `ubuntu` | Ubuntu / Linux（`Qoder-linux-amd64.deb` 与 `.rpm` 官方源） | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
 | `ios` | iOS App Store（`com.qoder.mobile` 国际版与 `com.qoder.app.cn` 国内版） | 27 | `1.24.1` → `1.46.0` | [1.46.0](2026-11-12_1.46.0.md) |
 | `android` | Android（`com.qoder.mobile` 官方 APK CDN 与 Play） | 2 | `0.9.0` → `0.10.0` | [0.10.0](2026-11-15_0.10.0.md) |
 
@@ -18,6 +18,7 @@
 
 | 版本 | 覆盖平台 | 发布日期 | 核心变更摘要 |
 |---|---|---|---|
+| [0.5.20](2026-11-25_0.5.20.md) | `mac`、`win`、`ubuntu` | 2026-11-25 | 官方 `0.5.18 → 0.5.20` 三端静态差分（Electron `43.8.4`；跨过未分析的 `0.5.19`；中间 `0.5.14`/`0.5.16`–`0.5.18` 尚未入仓）：`14` 条 `cloud-session:*` IPC + 扩展 `automations.*` IPC 与 `+6` `AUTOMATION_TASK_*` 错误码（`2 → 8`）、`19` 条 `automationPeer.*` 键 + `automations.read.v1`/`manage.v1` + `file-transfer.cjs`、`chat-session-recovery:*` + `20261119-00-chat-session-restart-resumption.sql`、`auth.deviceAccountBlocked.*` + `"Enterprise VPC sign-in"`、归档按组文案与 `fontSizeExtraLarge`/`uiScaleExtraLarge`、`20261121-00`/`01` 自动化迁移与 `20261123-01-async-question-order-clock`、`qodercli` `1.1.86-hotfix.19 → 1.1.96-hotfix.8`（`−826,457` B）、Agent SDK `1.0.62-alpha.2 → alpha.9`、`qoder.knowledge.center` 拆为 `wiki`+`qmind`、`@ali/qoder-text-sdk` `0.5.2`、`@qoder-space/in-app-browser` 及未公告的 Qwen/`statusline`/图标改动 |
 | [0.5.13](2026-11-16_0.5.13.md) | `mac` | 2026-11-16 | 官方 macOS `arm64` 双包静态差分（`0.5.12 → 0.5.13`，Electron `43.8.4`）：`ApplicationTransport.subscribe`（`Dta6yTTQ.js` → `BHeyMntc.js`）在保持 `64` 订阅上限下新增等待 `releaseRequested` 在途释放再复检及 30 秒 `"Application subscription limit reached"` 诊断日志、worker 解码字符串 `14,169 → 14,175`（`+6` 条 Bash 风险自评与 Auto 门控/黑名单/策略版本提示词及说明）、Agent SDK `1.0.60-alpha.50 → 1.0.60-alpha.62`、`qodercli` `1.1.86-hotfix.5 → 1.1.86-hotfix.5.2`、`qoder-office-xlsx` `xlsx-sidecar` 重编及官方其余 5 项分层对照 |
 | [0.5.12](2026-11-14_0.5.12.md) | `mac` | 2026-11-14 | 官方 macOS `arm64` 双包静态差分（`0.5.11 → 0.5.12`，Electron `43.8.4`）：Agent SDK `1.0.60-alpha.36 → 1.0.60-alpha.50`、`qodercli` `1.1.86-hotfix.4 → 1.1.86-hotfix.5`、worker 解密表新增 4 条 `transcript.resume.*` 字符串、`qoder-office-xlsx` `xlsx-sidecar` 重编、渲染层零字节变化及官方其余 4 项分栏对照 |
 | [0.5.7](2026-11-09_0.5.7.md) | `mac`、`win`、`ubuntu` | 2026-11-09 | `TODO`（`mac`、`win`、`ubuntu`）— _详细技术差分待补充_ |

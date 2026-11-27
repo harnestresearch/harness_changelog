@@ -2,9 +2,32 @@
 
 English | [简体中文](../zh-CN/full/antigravity.md) · [Highlight](../antigravity.md) | **Full Detail**
 
-> See [antigravity/README.md](antigravity/README.md) for the five-platform technical index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering both Antigravity desktop tracks: **Antigravity Desktop (`antigravity-hub`, `2.32.2`)** and **Antigravity IDE (`2.7.0`)**.
+> See [antigravity/README.md](antigravity/README.md) for the five-platform technical index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering both Antigravity desktop tracks: **Antigravity Desktop (`antigravity-hub`, `2.35.2`)** and **Antigravity IDE (`2.7.0`)**.
 
-## Antigravity Desktop (Hub) 2.32.2 (2026-11-17, Package `Last-Modified`)
+## Antigravity Desktop (Hub) 2.35.2 (2026-11-25, Package `Last-Modified`)
+
+See [antigravity/2026-11-25_2.35.2.md](antigravity/2026-11-25_2.35.2.md) for full details.
+
+- **Pure Maintenance Rebuild Over `2.35.1` (`2.35.2-4585983447007232`) — Version-Only Shell & Same-Size Backend Recompile**
+  - `app.asar` (`1,167` extracted files, `20,690,656` B, SHA-256 `9f0aad72… → e0571155…`, byte-identical across all five downloaded targets: `darwin-arm`, `darwin-x64`, `linux-x64`, `linux-arm` [`Antigravity-arm64/`], and embedded `windows-x64`) differs solely in `package.json` `version` (`2.35.1` → `2.35.2`), with `dist/`, `node_modules/`, `7` deps, and `chrome-devtools-mcp` `1.12.0` unchanged (prior `2.35.0`/`2.35.1` changes are not attributed to `2.35.2`).
+  - Go `language_server` recompiles at identical byte size (`darwin-arm` `197,343,440` B, `linux-x64` `230,003,400` B; `linux-arm` spot-check `216,421,040` B) on shared baseline `1027784732` (`cl/1029194470 → cl/1029311855`, ~2.5h later; `strings` `+6,466 / −6,307` `.rodata`/closure noise only) with zero diff across RPC (`338`), flag-pair (`225`), model (`44`), `*ToolConfig` (`65`), and CUA (`19`) inventories and zero new semantic copy; all four macOS helpers recompile at identical sizes.
+- **Official Single Fix ("Switch models while a turn is running") & Coverage Boundaries**
+  - The sole official `v2.35.2` fix recorded in a prior `2026-11-26` snapshot (not re-opened live here) belongs to the Hub webapp UI and **is not provable statically from client packages** (zero unannounced package-level capabilities detected). `cl/1029311855` matches across all four macOS/Linux targets (`darwin-x64` & `linux-arm` spot-checked without full `strings` diffs); **Windows `language_server` PE/CL remains uncovered**, and signature inspection was offline CMS chain parsing only.
+
+---
+
+## Prior Hub Release: 2.35.1 (2026-11-25, Package `Last-Modified`)
+
+See [antigravity/2026-11-25_2.35.1.md](antigravity/2026-11-25_2.35.1.md) for full details.
+
+- **Stage 2 (`2.35.0` → `2.35.1`, `execution_id` `4615540875067392`) — Maintenance Rebuild & Unverifiable Official `v2.35.1` Webapp Claims**
+  - `app.asar` (`1,167` extracted files, `20,690,656` B, SHA-256 `99ff7f6c… → 9f0aad72…`, byte-identical across `darwin-arm`, `linux-x64`, and embedded `windows-x64`) differs solely in `package.json` `version` (`2.35.0` → `2.35.1`); Go `language_server` recompiles on shared baseline `1027784732` (`cl/1028447422 → cl/1029194470`, `darwin-arm` `+16,528` B, `linux-x64` same CL; `strings` `+799 / −792` build-metadata/closure/rodata noise only) with zero diff across RPC (`338`), flag-pair (`225`), model (`44`), `*ToolConfig` (`65`), and CUA (`19`) inventories, while macOS helper binaries recompile at identical sizes. All three official `v2.35.1` items (from a `2026-11-25` snapshot, not re-opened live) have **zero static footprint** in client packages.
+- **Stage 1 (`2.34.0` → `2.35.0`, `execution_id` `6394266482769920`) — Shell Reorganization & Rebased `language_server` Refactor (Attributed to `2.35.0`, Not `2.35.1`)**
+  - Shell adds `appChannel.js`, `customWindowControls.js`, `computer/idleProbe.js`, `computer/permissionGuide.js`, and macOS `bin/agy-desktop-rtc` (`10,573,520` B), removing `computer/{hud,hudAgents,hudState}.js` (`chrome-devtools-mcp` `1.12.0` unchanged). Rebased `language_server` (`1025139341 → 1027784732`, `cl/1026637980 → cl/1028447422`, `+428,288` B, `strings` `+30,776 / −29,097`) contracts RPCs `380 → 338` (removing `GetUserMemories`, `GetKnowledgeItems`, `GetUnleashData`, `ImportFromCursor`, etc.), adds `AgentRemoteSession` CRUD/watch/reaction RPCs, `ListPluginPermissionGrants`/`RevokePluginPermissionGrant`, `ListRemoteAgents`, `agentapi` conversation CLI subcommands, `openai/openai_go` (`10,475` symbols), `enable-mcp-apps` / orchestrator / swarm flags (`204 → 225`), and `Gemini 4` suffix updates (`42 → 44`). Windows `language_server` PE/CL and `darwin-x64` were not covered; signature inspection was offline CMS chain parsing only.
+
+---
+
+## Prior Hub Patch: 2.32.2 (2026-11-17, Package `Last-Modified`)
 
 See [antigravity/2026-11-17_2.32.2.md](antigravity/2026-11-17_2.32.2.md) for full details.
 

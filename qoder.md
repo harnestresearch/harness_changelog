@@ -2,9 +2,21 @@
 
 English | [简体中文](zh-CN/qoder.md) · **Highlight** | [Full Detail](full/qoder.md)
 
-> See [qoder/README.md](qoder/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 58 releases (up to `0.5.13` macOS / `0.5.7` Windows & Linux Desktop, `1.46.0` iOS, and `0.10.0` Android).
+> See [qoder/README.md](qoder/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 59 releases (up to `0.5.20` Desktop across `mac`/`win`/`ubuntu`, `1.46.0` iOS, and `0.10.0` Android; intermediate desktop versions between `0.5.13` and `0.5.20` are not yet cataloged in this repository).
 
-## Latest Desktop Release: 0.5.13 (macOS, 2026-11-16)
+## Latest Desktop Release: 0.5.20 (macOS / Windows / Linux, 2026-11-25)
+
+See [qoder/2026-11-25_0.5.20.md](qoder/2026-11-25_0.5.20.md) for highlights, or [full/qoder/2026-11-25_0.5.20.md](full/qoder/2026-11-25_0.5.20.md) for full technical details. _(Official changelog heading `November 25, 2026` — "Cross-Device Collaboration and Cloud Tasks"; updater manifest `releaseDate` `2026-11-25T14:26:16.356Z` macOS / `14:34:35.952Z` Windows / `14:13:26.874Z` Linux. Intermediate desktop releases `0.5.14` and `0.5.16`–`0.5.19` are not yet recorded in this repository, so `0.5.13` is **not** the baseline—this entry covers strictly the `0.5.18 → 0.5.20` static diff, deliberately skipping `0.5.19`, which has no official changelog entry and was not analyzed. Full static diff on macOS `arm64`; Windows `x64` `exe`+`app.zip` and Linux `amd64` `.deb` sizes/SHA-256 verified with payload/Authenticode details from static package inspection, NSIS not disassembled, `.rpm` manifest SHA-256 only; macOS `x64`, Windows `arm64`, Android, and iOS uncovered; not executed at runtime.)_
+
+### Highlights
+
+- **Cloud Tasks, Cross-Device Collaboration & Local Task Recovery**: Official `0.5.20` notes introduce desktop cloud tasks, cross-device workspace file downloads and permission-scoped automation management, and resuming unfinished local tasks after quitting or updating. Static diffs confirm `14` new `cloud-session:*` IPC channels, expanded `automations.*` IPC and `+6` new `AUTOMATION_TASK_*` error codes (`2 → 8`), `19` `automationPeer.*` renderer keys, `automations.read.v1`/`manage.v1`, `chatSession.fileDownload.*` / `Resources/runtime/file-transfer.cjs`, and `chat-session-recovery:*` / `.recoveryPhase` / `20261119-00-chat-session-restart-resumption.sql` (cloud/peer execution is server-dependent and unverified at runtime).
+- **Managed Device Sign-In, Archive Groups, Extra-Large Text & 125% Scaling**: Official notes add enterprise managed-device sign-in restrictions, group restore/delete for archived local tasks (search bulk delete affects matching items only), extra-large text, and independent `125%` interface scaling. Static diffs confirm `auth.deviceAccountBlocked.{confirm,description}`, `"Device account policy rejected the current login"`, `"Enterprise VPC sign-in"`, `restoreGroupTasks`/`archivedGroupMore`/`deleteArchiveSearchResults*`, and `fontSizeExtraLarge`/`uiScaleExtraLarge` entry strings only (no plaintext layout parameters; enterprise policies are server-dependent).
+- **Fixes & Unannounced Runtime/Extension Changes**: Official fixes cover post-migration plugin install failures and restricted Windows plugin background services (partial static clues only: worker archive-install guards, `pluginHost.js` `+1,487` B, removal of `WindowsPluginJob.cs`/`windows-job.ps1`—cannot attribute line-by-line), automation run blocking after disconnect (`20261121-00-automation-run-retry-count.sql` & `20261121-01-automation-manual-pending-index.sql`), valid-model conversation start (indirect sign-out/reselect copy only), and Remote Control message ordering (`20261123-01-async-question-order-clock` + `.messageOrder`). Unannounced changes include `qodercli` `1.1.86-hotfix.19 → 1.1.96-hotfix.8` (`−826,457` B) on Electron `43.8.4`, Agent SDK `1.0.62-alpha.2 → alpha.9`, `qoder.knowledge.center` split into `qoder.knowledge.wiki` + `qoder.qmind`, `@ali/qoder-text-sdk` `0.5.2`, `@qoder-space/in-app-browser`, Qwen sign-in strings, `statusline` prompt split, and refreshed application icons.
+
+---
+
+## Earlier Tracked Desktop Release: 0.5.13 (macOS, 2026-11-16)
 
 See [qoder/2026-11-16_0.5.13.md](qoder/2026-11-16_0.5.13.md) for highlights, or [full/qoder/2026-11-16_0.5.13.md](full/qoder/2026-11-16_0.5.13.md) for full technical details. _(Release date from updater manifest `0.5.13.yml` `releaseDate: 2026-11-16T13:05:09.530Z`; static diff of official macOS `arm64` archives `0.5.12 → 0.5.13` only—Windows and Linux builds were not reverse-engineered and the application was not executed.)_
 

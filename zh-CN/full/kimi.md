@@ -2,9 +2,19 @@
 
 [English](../../full/kimi.md) | 简体中文 · [精简版 (Highlight)](../kimi.md) | **完整详情 (Full Detail)**
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 185 个历史版本索引（Windows 最新 `3.2.27`、iOS 最新 `3.1.8`，独立 Linux 端暂未发布）见 [kimi/README.md](kimi/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 186 个历史版本索引（桌面端 `mac`/`win` 最新 `3.2.29`、iOS 最新 `3.1.8`，独立 Linux 端暂未发布；`3.2.25` 至 `3.2.29` 之间的中间桌面版本尚未全部入录或完成解析）见 [kimi/README.md](kimi/README.md)。
 
-## 最新桌面端深度解析版本：3.2.25（2026-11-05，macOS）
+## 最新桌面端深度解析版本：3.2.29（2026-11-26，`mac`、`win`）
+
+详细改动见 [kimi/2026-11-26_3.2.29.md](kimi/2026-11-26_3.2.29.md)。基于官方带版本直链的 macOS `arm64`（`com.moonshot.kimichat`，`3.2.28.27 → 3.2.29.35`）与 Windows `x64`（PE `FileVersion` `3.2.28.33 → 3.2.29.38`）双包进行的 **`3.2.28`（2026-11-18）→ `3.2.29`（2026-11-26）** 静态差分（跨端 Sentry 构建指纹 `3.2.28+e69611da7c → 3.2.29+9f88ce6cda`；`3.2.25` 之后的中间桌面版本尚未全部入仓——仓内无 `3.2.28` 条目，`3.2.26`/`3.2.27` 仍为 `win` 端 `TODO` 占位——因此 `3.2.25` **并非**本对对比基线；macOS Intel 未取样；官方无 Linux 包，记为「无」；iOS/Android 不在范围；未运行目标二进制）：
+
+- **官方未提及的本地文件版本历史子系统（基于 `restic`）**：新增 `0 → 13` 个独立 `kimi-agent:file-history-*` IPC 通道（`list`、`read-version`、`image`、`image-cancel`、`diff`、`summary`、`restore`、`status`、`changed`、`attach`、`edit-sessions-ack`、`edit-sessions-freeze`、`edit-sessions-unfreeze`），随包内置 `restic` `0.19.1`（`darwin-arm64/restic` `29,603,376` B / `win32-x64/restic.exe` `31,670,288` B）与 `restic-bsd-2-clause.txt`，`out/main/chunks/` 新增 `18` 个模块前缀（`file-history-client`、`version-diff`、`version-summary`、`restic-resolver`、`repository-key-store`、`maintenance-scheduler`、`process-supervisor`、`lease`、`ab-gate` 等），`out/build-manifest.json` 新增 `flavor.features.fileHistory: true`，解码主进程新增 `file_history_restic`、`ResticCommandError`、`fileHistoryAbEligible`、`isFileHistoryRuntimeEnabled`；`zh-CN` 新增 `113` 个 key 中除 `2` 条全局搜索文案外，其余 `111` 条均为文件/版本历史及版本比对相关。含 A/B 开关标记，不代表对所有用户立即可见。
+- **官方 `3.2.29` 条目分层对照**：已坐实——Markdown 预览大纲导航（`obsidianToc` 在 `3.2.28` 为 `0` 次、`3.2.29` 见于双端 `WorkbenchPanel` 与 `en-US`/`zh-CN` 语言包）与全局搜索 UI/交互（新增 `showMoreMatches`、`searchOlderConversations` 及双端 `GlobalSearchModal` JS 更新 + 新增 CSS）。仅模块级（未逐行验证）——工作台文件树展开收起（新增 `WorkbenchFileSurface`）、远程控制权限同步与全自动误弹审批（`preload-permission-flow.mjs`、`permission-flow*`、`RemoteControl*`、`ApprovalPrompt`）、听写误回填（`MessageList`、`ConversationView`）及市场插件授权过期（新增 `use-plugin-install-flow` 及插件页更新）。仅来自官方日志、未独立锁定包内落点——移动端键盘遮挡插件/技能列表、资料刷新侧栏跳动与图片预览缩放错目标（不将 `pinch-zoom` preload 移除作为缩放修复行级证据）。
+- **运行时、归档、依赖与签名核验边界**：Electron `43.7.7` / Chromium `150.0.7871.250` 不变；`daimon` 升至 `1.0.15`（`1.0.14 → 1.0.15`）；双端 `app.asar` 增删改计数均为 `+915 / −885 / 44` 且 `44` 个修改路径完全相同（去哈希增删路径集合未独立复现同构结论）；`gateway.asar` 双端各增约 `+6.4` MB；`runtime/npm.asar` 双端逐字节未变；`package.json` 升级 `pnpm` `9.15.0 → 12.21.0`、`@doc-k/embed-sdk` `0.5.0 → 0.6.1`，新增 `geographiclib-mgrs` `1.0.7`，并移除原 `pnpm` overrides/patches 配置段。签名边界：macOS 主二进制 Team ID `2J9472RW75`、`com.moonshot.kimichat`、`Developer ID Application`（分析报告记录 CodeDirectory `3/3` 页哈希吻合，本次核验未重算页哈希，未完成 Apple 根信任与公证验证）；Windows 双包由同一 Sectigo EV 主体（叶证书组织为北京月之暗面科技有限公司）签名并带 RFC3161 时间戳，**未重算 Authenticode PE 摘要**，亦未验证 Sectigo 根信任与时间戳有效性。
+
+---
+
+## 更早深度解析桌面版本：3.2.25（2026-11-05，macOS）
 
 详细改动见 [kimi/2026-11-05_3.2.25.md](kimi/2026-11-05_3.2.25.md)。
 

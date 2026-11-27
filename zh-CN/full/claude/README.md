@@ -2,7 +2,7 @@
 
 [English](../../../full/claude/README.md) | 简体中文 · [精简版 (Highlight)](../../claude/README.md) | **完整详情 (Full Detail)**
 
-覆盖 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **533** 个统一版本号（桌面端 **245** 个版本 + 移动端 **288** 个版本）的完整演进索引。
+覆盖 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **534** 个统一版本号（桌面端 **245** 个版本 + 移动端 **289** 个版本）的完整演进索引。
 
 ## 五端覆盖概览
 
@@ -12,7 +12,7 @@
 | `win` | Windows（`Anthropic.Claude` Winget、Squirrel 与 MSIX） | 206 | `0.4.9` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ubuntu` | Ubuntu / Debian APT（`claude-desktop`） | 70 | `1.17180.0` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ios` | iOS App Store（`com.anthropic.claude`） | 171 | `1.240826.1` → `1.261109.19` | [1.261109.19](2026-11-11_1.261109.19.md) |
-| `android` | Android（`com.anthropic.claude`） | 154 | `1.240805.17` → `1.261113.19` | [1.261113.19](2026-11-14_1.261113.19.md) |
+| `android` | Android（`com.anthropic.claude`） | 155 | `1.240805.17` → `1.261124.19` | [1.261124.19](2026-11-25_1.261124.19.md) |
 
 ## 关键架构与功能里程碑
 
@@ -285,6 +285,7 @@
 
 | 版本 | 覆盖平台 | 发布日期 | 核心变更摘要 |
 |---|---|---|---|
+| [1.261124.19](2026-11-25_1.261124.19.md) | `android` | 2026-11-25（Uptodown 镜像） | Uptodown 第三方 Play 原签分包 XAPK 静态差分（`1.261123.19 → 1.261124.19`，`versionCode` `26112319 → 26112419`；不含 iOS 与 `120`–`122` 缺口，未做 `apksigner` 全量校验）：XAPK `37 → 30`（语言分包 `28 → 21`：`+te`、`−am/fil/hi/ml/mr/sw/ta/tl`）、`20/20` 原生库逐字节一致、DEX `+~1.0` MB（池 `171,650 → 173,615`）、`connect_github_card.*` + GitHub App + PR/plan/工具审批失败分类 + `CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}`、约 12 条 safeguards 换模型文案、`places_list.*`、`usage.section.*`、`settings.default_tab.*`、PHI 声明、移除 `continue_on_cloud.*`（`8 → 1`），`66` 权限/`83` 组件/API 端点零增删 |
 | [1.261113.19](2026-11-14_1.261113.19.md) | `android` | 2026-11-14 | Play-split XAPK 静态差分（`1.261112.18 → 1.261113.19`）：`minSdkVersion` `29 → 32`（Android 10 → 12L，`targetSdkVersion` `37`）、XAPK 总条目 `37 → 39`（语言 split `27 → 30`）、`voice.internal.{readaloud,dictation,dictation/offline}` 重构（保留 `TTSPlaybackService`）、CCR `ProjectSheet*` / `GitHubSsoRequiredException` / `CoworkTurnOutcomeWorker` / 49 项底部导航、移除旧 Threads 与位置事件属性清单，并携带静态促销转额度/KYC 代码 |
 | [1.261109.19](2026-11-11_1.261109.19.md) | `ios`、`android` | 2026-11-11 | `TODO`（`ios`、`android`）— _详细技术差分待补充_ |
 | [1.261106.19](2026-11-09_1.261106.19.md) | `ios`、`android` | 2026-11-09 | `TODO`（`ios`、`android`）— _详细技术差分待补充_ |

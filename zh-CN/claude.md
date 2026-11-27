@@ -2,7 +2,17 @@
 
 [English](../claude.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](full/claude.md)
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 533 个历史版本索引（桌面端 245 个 + 移动端 288 个）见 [claude/README.md](claude/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 534 个历史版本索引（桌面端 245 个 + 移动端 289 个）见 [claude/README.md](claude/README.md)。
+
+## 最新 Android 版本：1.261124.19（Android，2026-11-25 Uptodown 镜像窗口）
+
+核心亮点见 [claude/2026-11-25_1.261124.19.md](claude/2026-11-25_1.261124.19.md)，完整技术细节见 [full/claude/2026-11-25_1.261124.19.md](full/claude/2026-11-25_1.261124.19.md)。_（发布窗口约 `2026-11-25/26`，不精确：Uptodown 标注 `Nov 25, 2026` 且附 `"Matches the published version"`，而 `2026-11-26` Play 美区快照仍停留 `"Updated on: Nov 24, 2026"` 且无版本号。基于 **Uptodown 第三方镜像** Play 原签分包 XAPK `1.261123.19 → 1.261124.19` 静态对比，非直接来自 Play 官方下载；未做 `apksigner` 全量校验，不涵盖 iOS 与 `1.261120.19`–`1.261122.*` 缺口，未运行 APK，静态在场不代表已放量。）_
+
+- **GitHub 深度集成与 PR / Plan / 工具调用审批流**：新增 `claudeai.code.connect_github_card.*` 遥测、Claude GitHub App 安装引导、PR/plan/工具调用审批失败分类、组织连接器审批提示、`CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}` 及云环境配置引导。
+- **Safeguards 换模型文案与 Places 面板**：移动端新增约 12 条面向 biology/cybersecurity/sensitive topics 的 safeguards 自动换模型文案、新增 `claudeai.places_list.*` Places 面板与 `voice.reachability_checked`，并新增 usage 分区、`Default tab` 设置、明示排除 PHI 的项目指令编辑、共享会话链接提示、朗读限额及约 20 条登录/维护/限额错误文案，同时收缩/移除 `continue_on_cloud.*`（`8 → 1`）、`ready_made_card.rated` 与 `money.message_box.*`。
+- **分包与不变量**：XAPK 总条目 `37 → 30`（语言分包 `28 → 21`：`+te`、`−am/fil/hi/ml/mr/sw/ta/tl`），全部 `20` 个原生 `.so` 库逐字节一致，`minSdk`/`targetSdk` `32`/`37`、`66` 项权限与 `83` 个组件不变，**网络 API 端点零增删**。
+
+---
 
 ## 最新桌面版本：5.11492.5（2026-11-14）
 
@@ -14,7 +24,7 @@
 
 ---
 
-## 最新 Android 版本：1.261113.19（Android，2026-11-14）
+## 上一 Android 版本：1.261113.19（Android，2026-11-14）
 
 核心亮点见 [claude/2026-11-14_1.261113.19.md](claude/2026-11-14_1.261113.19.md)，完整技术细节见 [full/claude/2026-11-14_1.261113.19.md](full/claude/2026-11-14_1.261113.19.md)。_（Google Play 美区 `"Updated on: Nov 14, 2026"` + Uptodown `"Matches the published version"`；基线 `1.261112.18` 官方发布日未确认。仅基于 Uptodown Play-split XAPK 静态分析；不涵盖 iOS，未运行 APK，静态代码与文案在场不代表功能开放或政策/计费已生效。）_
 

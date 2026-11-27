@@ -2,7 +2,7 @@
 
 English | [简体中文](../../zh-CN/full/claude/README.md) · [Highlight](../../claude/README.md) | **Full Detail**
 
-Complete multi-platform version history covering **533** unified releases across `mac`, `win`, `ubuntu`, `ios`, and `android` (**245** Desktop releases + **288** Mobile releases).
+Complete multi-platform version history covering **534** unified releases across `mac`, `win`, `ubuntu`, `ios`, and `android` (**245** Desktop releases + **289** Mobile releases).
 
 ## Five-Platform Coverage Overview
 
@@ -12,7 +12,7 @@ Complete multi-platform version history covering **533** unified releases across
 | `win` | Windows (`Anthropic.Claude` Winget, Squirrel & MSIX) | 206 | `0.4.9` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ubuntu` | Ubuntu / Debian APT (`claude-desktop`) | 70 | `1.17180.0` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ios` | iOS App Store (`com.anthropic.claude`) | 171 | `1.240826.1` → `1.261109.19` | [1.261109.19](2026-11-11_1.261109.19.md) |
-| `android` | Android (`com.anthropic.claude`) | 154 | `1.240805.17` → `1.261113.19` | [1.261113.19](2026-11-14_1.261113.19.md) |
+| `android` | Android (`com.anthropic.claude`) | 155 | `1.240805.17` → `1.261124.19` | [1.261124.19](2026-11-25_1.261124.19.md) |
 
 ## Key Architectural & Feature Milestones
 
@@ -285,6 +285,7 @@ Complete multi-platform version history covering **533** unified releases across
 
 | Version | Platforms | Release Date | Key Changes |
 |---|---|---|---|
+| [1.261124.19](2026-11-25_1.261124.19.md) | `android` | 2026-11-25 (Uptodown) | Uptodown third-party Play-split XAPK static diff (`1.261123.19 → 1.261124.19`, `versionCode` `26112319 → 26112419`; iOS & `120`–`122` gap uncovered, no full `apksigner` verify): XAPK `37 → 30` (`28 → 21` language splits: `+te`, `−am/fil/hi/ml/mr/sw/ta/tl`), `20/20` byte-identical native libs, DEX `+~1.0` MB (`171,650 → 173,615` strings), `connect_github_card.*` + GitHub App + PR/plan/tool approval taxonomy + `CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}`, ~12 safeguards model-switch strings, `places_list.*`, `usage.section.*`, `settings.default_tab.*`, PHI notice, `continue_on_cloud.*` (`8 → 1`) removal, `66` permissions / `83` components / API endpoints unchanged |
 | [1.261113.19](2026-11-14_1.261113.19.md) | `android` | 2026-11-14 | Play-split XAPK static diff (`1.261112.18 → 1.261113.19`): `minSdkVersion` `29 → 32` (Android 10 → 12L, `targetSdkVersion` `37`), `37 → 39` XAPK entries (`27 → 30` language splits), `voice.internal.{readaloud,dictation,dictation/offline}` refactor (retaining `TTSPlaybackService`), CCR `ProjectSheet*` / `GitHubSsoRequiredException` / `CoworkTurnOutcomeWorker` / 49 bottom-sheet destinations, Threads UI & location event-scrub removal, and static promotional-credits/KYC client code |
 | [1.261109.19](2026-11-11_1.261109.19.md) | `ios`, `android` | 2026-11-11 | `TODO` (`ios`, `android`) — _detailed diff pending_ |
 | [1.261106.19](2026-11-09_1.261106.19.md) | `ios`, `android` | 2026-11-09 | `TODO` (`ios`, `android`) — _detailed diff pending_ |

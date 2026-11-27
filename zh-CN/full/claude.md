@@ -2,7 +2,17 @@
 
 [English](../../full/claude.md) | 简体中文 · [精简版 (Highlight)](../claude.md) | **完整详情 (Full Detail)**
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 533 个历史版本索引（桌面端 245 个 + 移动端 288 个）见 [claude/README.md](claude/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 534 个历史版本索引（桌面端 245 个 + 移动端 289 个）见 [claude/README.md](claude/README.md)。
+
+## 最新 Android 版本：1.261124.19（Android，2026-11-25 Uptodown 镜像窗口）
+
+详细改动见 [claude/2026-11-25_1.261124.19.md](claude/2026-11-25_1.261124.19.md)。基于两份 **Uptodown 第三方镜像** Play 原签分包 XAPK（`1.261123.19`［`versionCode` `26112319`］→ `1.261124.19`［`versionCode` `26112419`］，发布窗口约 `2026-11-25/26`；非直接来自 Play 官方下载，未做 `apksigner` 全量校验，不含 iOS 与 `1.261120.19`–`1.261122.*` 缺口，未运行 APK）的只读静态差分：
+
+- **打包与清单不变量**：XAPK 条目 `37 → 30`（语言分包 `28 → 21`：`+config.te.apk`、`−config.{am,fil,hi,ml,mr,sw,ta,tl}.apk`）；`arm64_v8a`/`armeabi_v7a` 全部 `20` 个原生 `.so` 库逐字节一致；base APK `1,241` 条目（`META-INF/services` 轮换），`resources.arsc` `758,720 → 755,716` B，未压缩 DEX 总和 `59,979,864 → 60,997,648` B（约 `+1.0` MB；`classes6.dex` `4.59 → 5.71` MB，`classes3.dex` `−0.34` MB）；`minSdk`/`targetSdk` `32`/`37`、`66` 权限与 `83` 组件不变。
+- **GitHub 集成、Safeguards 文案与 Places 面板（DEX 池 `171,650 → 173,615`）**：新增 `claudeai.code.connect_github_card.*`、Claude GitHub App 安装提示、PR/plan/工具调用审批失败分类、组织连接器审批提示、`CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}`、云环境引导、约 12 条 biology/cybersecurity/sensitive topics safeguards 换模型文案、`claudeai.places_list.*`（`viewed`/`photo_source_opened`/`place_changed`/`sources_info_opened`）+ `voice.reachability_checked`、`usage.section.*`、`settings.default_tab.*`、明示排除 PHI 的项目指令、朗读限额及约 20 条登录/错误文案。
+- **移除面与网络面**：收缩/下线 `claudeai.code.continue_on_cloud.*`（`8 → 1`），移除 `artifacts.ready_made_card.rated`、`claudeai.money.message_box.*` 与旧 artifact 错误串；**API 端点零增删**（仅新增 `assets.claude.ai/claude-ai/wb/{file}` 与 `breville.com` favicon 字面量）。
+
+---
 
 ## 最新桌面版本：5.11492.5（2026-11-14）
 
@@ -17,7 +27,7 @@
 
 ---
 
-## 最新 Android 版本：1.261113.19（Android，2026-11-14）
+## 上一 Android 版本：1.261113.19（Android，2026-11-14）
 
 详细改动见 [claude/2026-11-14_1.261113.19.md](claude/2026-11-14_1.261113.19.md)。基于两份 Uptodown Google Play 分包 XAPK（`1.261112.18`（`versionCode` `26111218`，Play 发布日未确认）→ `1.261113.19`（`versionCode` `26111319`，Google Play 美区 `"Updated on: Nov 14, 2026"`））的静态反编译与资源/字符串差分（不涵盖 iOS，未运行 APK；签名指纹 `305a1e8a…818b64a0` 与 `assetlinks.json` 匹配依据先前快照记录，未重新联网复验）：
 

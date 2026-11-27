@@ -2,14 +2,14 @@
 
 English | [简体中文](../../zh-CN/full/kimi/README.md) · [Highlight](../../kimi/README.md) | **Full Detail**
 
-Complete multi-platform version history covering all **185** unified releases of Kimi from `1.10.1` (2024-09-01) to `3.2.27` (2026-11-12) across `mac`, `win`, `ubuntu`, `ios`, and `android` (**88** Desktop/Unified releases + **97** Mobile-only releases).
+Complete multi-platform version history covering all **186** unified releases of Kimi from `1.10.1` (2024-09-01) to `3.2.29` (2026-11-26) across `mac`, `win`, `ubuntu`, `ios`, and `android` (**89** Desktop/Unified releases + **97** Mobile-only releases; intermediate desktop versions after `3.2.25` are not all cataloged or analyzed—`3.2.28` has no standalone entry yet and `3.2.26`/`3.2.27` remain Windows-only `TODO` placeholders).
 
 ## Five-Platform Coverage Overview
 
 | Platform | Distribution / Package | Tracked Releases | Version Range | Latest Version |
 |---|---|---|---|---|
-| `mac` | macOS (`Kimi.app` Moonshot CDN & Homebrew Cask) | 64 | `2.0.4` → `3.2.25` | [3.2.25](2026-11-05_3.2.25.md) |
-| `win` | Windows (`MoonshotAI.Kimi` Setup CDN & Winget) | 82 | `2.0.2` → `3.2.27` | [3.2.27](2026-11-12_3.2.27.md) |
+| `mac` | macOS (`Kimi.app` Moonshot CDN & Homebrew Cask) | 65 | `2.0.4` → `3.2.29` | [3.2.29](2026-11-26_3.2.29.md) |
+| `win` | Windows (`MoonshotAI.Kimi` Setup CDN & Winget) | 83 | `2.0.2` → `3.2.29` | [3.2.29](2026-11-26_3.2.29.md) |
 | `ubuntu` | Standalone Kimi Linux Client | 0 | _No standalone release yet_ | — |
 | `ios` | iOS App Store (`com.moonshot.kimichat`) | 122 | `1.10.1` → `3.1.8` | [3.1.8](2026-08-11_3.1.8.md) |
 | `android` | Android (`com.moonshot.kimichat` Moonshot APK CDN & Stores) | 35 | `2.3.1` → `android-3.1.5` | [android-3.1.5](2026-10-23_android-3.1.5.md) |
@@ -18,6 +18,7 @@ Complete multi-platform version history covering all **185** unified releases of
 
 | Version | Platforms | Release Date | Key Changes |
 |---|---|---|---|
+| [3.2.29](2026-11-26_3.2.29.md) | `mac`, `win` | 2026-11-26 | `3.2.28 → 3.2.29` macOS `arm64` + Windows `x64` dual-package static diff (Sentry `3.2.28+e69611da7c → 3.2.29+9f88ce6cda`; Electron `43.7.7` / Chromium `150.0.7871.250` unchanged; `daimon` `1.0.14 → 1.0.15`; `app.asar` `+915/−885/44` with identical `44` changed paths; `gateway.asar` `+6.4` MB): unannounced `restic` `0.19.1` local file version history (`0 → 13` `kimi-agent:file-history-*` channels, `18` main-process chunks, `111`/`113` new `zh-CN` keys, `fileHistoryAbEligible`/`isFileHistoryRuntimeEnabled`), confirmed `obsidianToc` & `GlobalSearchModal` (`showMoreMatches`/`searchOlderConversations`), module-level file-tree/permission-flow/dictation/plugin-auth updates, and official-only notes |
 | [3.2.27](2026-11-12_3.2.27.md) | `win` | 2026-11-12 | `TODO` (`win`) — _detailed diff pending_ |
 | [3.2.26](2026-11-06_3.2.26.md) | `win` | 2026-11-06 | `TODO` (`win`) — _detailed diff pending_ |
 | [3.2.25](2026-11-05_3.2.25.md) | `mac`, `win` | 2026-11-05 | Electron 43.7.7 / Chromium 150.0.7871.250; embedded `daimon-bundle` v1.0.6 (`kimi-code` v0.5.1 + Node 24.15.0 + Python 3.12 + `uv`), 5 MCP paths (incl. `WebMCP` CDP & `kimi-cu`), 7 Rust/Swift `.node` addons, `gateway.asar` OpenClaw, and WASM toolchains |

@@ -2,7 +2,7 @@
 
 English | [简体中文](../zh-CN/claude/README.md) · **Highlight** | [Full Detail](../full/claude/README.md)
 
-Complete multi-platform version history covering **533** unified releases across `mac`, `win`, `ubuntu`, `ios`, and `android` (**245** Desktop releases + **288** Mobile releases).
+Complete multi-platform version history covering **534** unified releases across `mac`, `win`, `ubuntu`, `ios`, and `android` (**245** Desktop releases + **289** Mobile releases).
 
 ## Five-Platform Coverage Overview
 
@@ -12,7 +12,7 @@ Complete multi-platform version history covering **533** unified releases across
 | `win` | Windows (`Anthropic.Claude` Winget, Squirrel & MSIX) | 206 | `0.4.9` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ubuntu` | Ubuntu / Debian APT (`claude-desktop`) | 70 | `1.17180.0` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ios` | iOS App Store (`com.anthropic.claude`) | 171 | `1.240826.1` → `1.261109.19` | [1.261109.19](2026-11-11_1.261109.19.md) |
-| `android` | Android (`com.anthropic.claude`) | 154 | `1.240805.17` → `1.261113.19` | [1.261113.19](2026-11-14_1.261113.19.md) |
+| `android` | Android (`com.anthropic.claude`) | 155 | `1.240805.17` → `1.261124.19` | [1.261124.19](2026-11-25_1.261124.19.md) |
 
 ## Key Architectural & Feature Milestones
 
@@ -285,6 +285,7 @@ Complete multi-platform version history covering **533** unified releases across
 
 | Version | Platforms | Release Date | Highlights |
 |---|---|---|---|
+| [1.261124.19](2026-11-25_1.261124.19.md) | `android` | 2026-11-25 (Uptodown) | Uptodown third-party Play-split XAPK static diff (`1.261123.19 → 1.261124.19`; iOS & `120`–`122` gap uncovered, no full `apksigner` verify): GitHub integration (`connect_github_card.*`, GitHub App install prompts, PR/plan/tool-call approval error taxonomy), ~12 safeguards auto-model-switch strings, `places_list` Places panel, usage sections, `Default tab`, PHI-exclusion project instructions, read-aloud limit, `continue_on_cloud.*` removal, `28 → 21` language splits, `20/20` byte-identical native libs, zero permission/component/API endpoint changes |
 | [1.261113.19](2026-11-14_1.261113.19.md) | `android` | 2026-11-14 | Play-split XAPK static diff (`1.261112.18 → 1.261113.19`): Android 12L `minSdkVersion` `32`, `27 → 30` locale splits, standalone `dictation` (incl. offline) & `readaloud` modules, CCR project sheets / GitHub SSO / 49 bottom-sheet destinations, retired Threads UI, and static promotional-credits/KYC client code |
 | [1.261109.19](2026-11-11_1.261109.19.md) | `ios`, `android` | 2026-11-11 | `TODO` (`ios`, `android`) — _highlights pending_ |
 | [1.261106.19](2026-11-09_1.261106.19.md) | `ios`, `android` | 2026-11-09 | `TODO` (`ios`, `android`) — _highlights pending_ |

@@ -2,9 +2,31 @@
 
 [English](../antigravity.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](full/antigravity.md)
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）版本索引（覆盖 **Antigravity Desktop / Hub `2.32.2`** 与 **Antigravity IDE `2.7.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）版本索引（覆盖 **Antigravity Desktop / Hub `2.35.2`** 与 **Antigravity IDE `2.7.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
 
-## Antigravity Desktop（Hub）2.32.2（2026-11-17，包 `Last-Modified`）
+## Antigravity Desktop（Hub）2.35.2（2026-11-25，包 `Last-Modified`）
+
+核心亮点见 [antigravity/2026-11-25_2.35.2.md](antigravity/2026-11-25_2.35.2.md)，完整技术细节见 [full/antigravity/2026-11-25_2.35.2.md](full/antigravity/2026-11-25_2.35.2.md)。_（相对 `2.35.1` 的纯维护版，构建 `2.35.2-4585983447007232`；`darwin-arm` 主分析 + 五端同构建点测，首次覆盖 `darwin-x64` 与 `linux-arm`，Windows LS PE/CL 未覆盖；签名仅离线解析 CMS 链。）_
+
+### 核心亮点
+
+- **相对 `2.35.1` 的纯维护版（壳层仅版本号变更 + 后端同大小同基线重编译）**：`app.asar`（`1,167` 文件、`20,690,656` B，五端逐字节一致）相对 `2.35.1` 仅 `package.json` 版本号升至 `2.35.2`，`chrome-devtools-mcp` `1.12.0` 不变（前序 `2.35.0` / `2.35.1` 变更不归因于 `2.35.2`）。Go `language_server` 同大小重编译（mac `197,343,440` B / linux-x64 `230,003,400` B，同基线 `1027784732`，`cl/1029194470 → cl/1029311855`），RPC（`338`）、开关（`225`）、模型（`44`）、`*ToolConfig`（`65`）与 CUA（`19`）五口径零 diff，零新增语义串；macOS 四件副件同大小重编译。
+- **官方独立条目「Switch models while a turn is running」属 Hub webapp，包内不可证**：既有 `2026-11-26` 快照记录的官方唯一修复归属远程 Hub webapp UI，**静态安装包无法取证**；本版未检出官方未单列的包内新能力。
+
+---
+
+## 前序 Hub 版本：2.35.1（2026-11-25，包 `Last-Modified`）
+
+核心亮点见 [antigravity/2026-11-25_2.35.1.md](antigravity/2026-11-25_2.35.1.md)，完整技术细节见 [full/antigravity/2026-11-25_2.35.1.md](full/antigravity/2026-11-25_2.35.1.md)。_（两段分列对比 `2.34.0 → 2.35.0` 与 `2.35.0 → 2.35.1`，不混称归属；`darwin-arm` 主轴全量对比，配合 `linux-x64` asar/LS CL 与 `windows-x64` 内嵌 asar 核对，Windows LS PE/CL 与 `darwin-x64` 未覆盖；签名仅离线解析 CMS 链。）_
+
+### 核心亮点
+
+- **`2.35.0` → `2.35.1`（维护版；官方 `v2.35.1` 三条无包内静态落点）**：`app.asar`（`1,167` 文件、`20,690,656` B）相对 `2.35.0` 仅 `package.json` 版本号更新；Go `language_server` 同基线（`1027784732`）重编译（`cl/1028447422 → cl/1029194470`，`+16.5` KB），RPC（`338`）、开关（`225`）、模型（`44`）、`*ToolConfig`（`65`）与 CUA（`19`）五口径零差异，macOS 副件同大小重编译。既有 `2026-11-25` 快照记录的官方 `v2.35.1` 三条说明（重启恢复会话、插件面板自动打开、诊断上传压缩）在两段包内均**无静态落点**（属 Hub webapp/运行时侧）。
+- **`2.34.0` → `2.35.0`（前序功能与重构段，不归因于 `2.35.1`）**：`2.35.0` 重组桌面壳层 `computer/`（移出 `hud`/`hudAgents`/`hudState`，新增 `customWindowControls.js`、`permissionGuide.js`、`idleProbe.js`、`appChannel.js` 及 macOS `agy-desktop-rtc`），并将 `language_server` rebase 重构（`+428` KB，`strings` `+30,776/−29,097`），新增 `agentapi` 会话管理 CLI 子命令、`AgentRemoteSession` CRUD/订阅/reaction、`ListPluginPermissionGrants`/`RevokePluginPermissionGrant`、`openai/openai_go`（`10,475` 符号）及 `enable-mcp-apps`/orchestrator/swarm 等开关，同时 RPC 面由 `380` 收缩至 `338`（而无限历史与 conversations skill 资产在包内不可证）。
+
+---
+
+## 前序补丁构建（Hub）：2.32.2（2026-11-17，包 `Last-Modified`）
 
 核心亮点见 [antigravity/2026-11-17_2.32.2.md](antigravity/2026-11-17_2.32.2.md)，完整技术细节见 [full/antigravity/2026-11-17_2.32.2.md](full/antigravity/2026-11-17_2.32.2.md)。
 

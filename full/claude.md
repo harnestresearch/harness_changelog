@@ -2,7 +2,17 @@
 
 English | [简体中文](../zh-CN/full/claude.md) · [Highlight](../claude.md) | **Full Detail**
 
-> See [claude/README.md](claude/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 533 historical releases (245 Desktop + 288 Mobile).
+> See [claude/README.md](claude/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 534 historical releases (245 Desktop + 289 Mobile).
+
+## Latest Android Release: 1.261124.19 (Android, 2026-11-25 Uptodown Window)
+
+See [claude/2026-11-25_1.261124.19.md](claude/2026-11-25_1.261124.19.md) for full details. Read-only static diff of **Uptodown third-party mirror** Play-split XAPKs (`1.261123.19` [`versionCode` `26112319`] → `1.261124.19` [`versionCode` `26112419`], imprecise `2026-11-25/26` window; not direct Play downloads, no full `apksigner` scheme verify, iOS & `1.261120.19`–`1.261122.*` gap uncovered, APKs not executed):
+
+- **Packaging & Manifest Invariants**: XAPK entries `37 → 30` (`28 → 21` language splits: `+config.te.apk`, `−config.{am,fil,hi,ml,mr,sw,ta,tl}.apk`), `20/20` native `.so` libs byte-identical across `arm64_v8a`/`armeabi_v7a`, base APK `1,241` entries (`META-INF/services` rotation), `resources.arsc` `758,720 → 755,716` B, uncompressed DEX `59,979,864 → 60,997,648` B (`~+1.0` MB; `classes6.dex` `4.59 → 5.71` MB, `classes3.dex` `−0.34` MB), `minSdk`/`targetSdk` `32`/`37`, `66` permissions, and `83` components unchanged.
+- **GitHub Integration, Safeguards Copy & Places Panel (`DEX` Pool `171,650 → 173,615`)**: Adds `claudeai.code.connect_github_card.*`, Claude GitHub App install copy, PR/plan/tool-call approval error taxonomy, org connector-approval notice, `CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}`, cloud-environment setup prompts, ~12 biology/cybersecurity/sensitive-topic safeguards model-switch strings, `claudeai.places_list.*` (`viewed`/`photo_source_opened`/`place_changed`/`sources_info_opened`) + `voice.reachability_checked`, `usage.section.*`, `settings.default_tab.*`, PHI-exclusion project instructions, read-aloud limit, and ~20 sign-in/error strings.
+- **Removals & Network Surface**: Retires `claudeai.code.continue_on_cloud.*` (`8 → 1`), `artifacts.ready_made_card.rated`, `claudeai.money.message_box.*`, and legacy artifact errors; **zero API endpoint additions or removals** (only `assets.claude.ai/claude-ai/wb/{file}` and `breville.com` favicon literals).
+
+---
 
 ## Latest Desktop Release: 5.11492.5 (2026-11-14)
 
@@ -17,7 +27,7 @@ See [claude/2026-11-14_5.11492.5.md](claude/2026-11-14_5.11492.5.md) for full de
 
 ---
 
-## Latest Android Release: 1.261113.19 (Android, 2026-11-14)
+## Previous Android Release: 1.261113.19 (Android, 2026-11-14)
 
 See [claude/2026-11-14_1.261113.19.md](claude/2026-11-14_1.261113.19.md) for full details. Static diff of Uptodown Google Play-split XAPKs (`1.261112.18` (`versionCode` `26111218`, Play release date unconfirmed) → `1.261113.19` (`versionCode` `26111319`, Google Play US `"Updated on: Nov 14, 2026"`); iOS not covered, APKs not executed, and prior `assetlinks.json` signer match record `305a1e8a…818b64a0` was not re-fetched):
 

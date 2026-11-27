@@ -2,7 +2,17 @@
 
 English | [简体中文](zh-CN/claude.md) · **Highlight** | [Full Detail](full/claude.md)
 
-> See [claude/README.md](claude/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 533 historical releases (245 Desktop + 288 Mobile).
+> See [claude/README.md](claude/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 534 historical releases (245 Desktop + 289 Mobile).
+
+## Latest Android Release: 1.261124.19 (Android, 2026-11-25 Uptodown Window)
+
+See [claude/2026-11-25_1.261124.19.md](claude/2026-11-25_1.261124.19.md) for highlights, or [full/claude/2026-11-25_1.261124.19.md](full/claude/2026-11-25_1.261124.19.md) for full technical details. _(Imprecise `2026-11-25/26` window from Uptodown `"Nov 25, 2026"` + `"Matches the published version"`; `2026-11-26` Google Play US snapshot remained `"Updated on: Nov 24, 2026"` without version numbers. Static diff of **Uptodown third-party mirror** Play-split XAPKs `1.261123.19 → 1.261124.19`—not direct Play downloads; full `apksigner` verify not performed, iOS & historical `1.261120.19`–`1.261122.*` gap not covered, APKs not executed, and static presence does not confirm live rollout.)_
+
+- **GitHub Integration & PR / Plan / Tool-Call Approvals**: Adds `claudeai.code.connect_github_card.*` telemetry, Claude GitHub App installation prompts, granular PR/plan/tool-call approval failure messages, organization connector-approval notices, `CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}`, and cloud-environment setup prompts.
+- **Safeguards Model-Switch Prompts & Places Panel**: Ships ~12 biology/cybersecurity/sensitive-topic safeguards auto-model-switch strings on mobile, adds the `claudeai.places_list.*` Places selection panel (`Next place` / `Previous place`) and `voice.reachability_checked`, and adds usage-page sections, `Default tab` settings, project instructions editing with explicit PHI exclusion, shared-session link visibility, read-aloud limit copy, and ~20 sign-in/maintenance/model-limit error strings while retiring `continue_on_cloud.*` (`8 → 1`), `ready_made_card.rated`, and `money.message_box.*`.
+- **Packaging & Invariants**: XAPK members drop `37 → 30` (language splits `28 → 21`: `+te`, `−am/fil/hi/ml/mr/sw/ta/tl`) while all `20` native `.so` libraries remain byte-identical, `minSdkVersion` `32` / `targetSdkVersion` `37`, `66` permissions, and `83` components stay unchanged, and **no API endpoints were added or removed**.
+
+---
 
 ## Latest Desktop Release: 5.11492.5 (2026-11-14)
 
@@ -14,7 +24,7 @@ See [claude/2026-11-14_5.11492.5.md](claude/2026-11-14_5.11492.5.md) for highlig
 
 ---
 
-## Latest Android Release: 1.261113.19 (Android, 2026-11-14)
+## Previous Android Release: 1.261113.19 (Android, 2026-11-14)
 
 See [claude/2026-11-14_1.261113.19.md](claude/2026-11-14_1.261113.19.md) for highlights, or [full/claude/2026-11-14_1.261113.19.md](full/claude/2026-11-14_1.261113.19.md) for full technical details. _(Google Play US `"Updated on: Nov 14, 2026"` + Uptodown `"Matches the published version"`; baseline `1.261112.18` Play release date unconfirmed. Static diff of Uptodown Play-split XAPKs only; iOS not covered, APKs not executed, and static code/string presence does not confirm live rollout or policy/billing enforcement.)_
 
