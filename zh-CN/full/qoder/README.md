@@ -2,22 +2,23 @@
 
 [English](../../../full/qoder/README.md) | 简体中文 · [精简版 (Highlight)](../../qoder/README.md) | **完整详情 (Full Detail)**
 
-覆盖 Qoder 自 `1.24.1`（2026-07-16）至 `0.5.20`（2026-11-25）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **59** 个版本条目的完整演进索引（含 **30** 个桌面/跨端版本与 **29** 个移动端独立版本；中间桌面版本 `0.5.14` 与 `0.5.16`–`0.5.19` 尚未入仓）。
+覆盖 Qoder 自 `1.24.1`（2026-07-16）至 `0.5.21` 桌面端 / `2.0.0` Android（2026-11-27）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **61** 个版本条目的完整演进索引（含 **31** 个桌面/跨端版本与 **30** 个移动端独立版本；中间桌面版本 `0.5.14` 与 `0.5.16`–`0.5.19` 以及 Android `0.11.0` 从未入仓，Android `2.0.0` 仅覆盖 `0.11.0 → 2.0.0`）。
 
 ## 五端覆盖概览
 
 | 平台 | 分发渠道 / 包名 | 收录版本数 | 版本范围 | 最新版本 |
 |---|---|---|---|---|
-| `mac` | macOS（`Qoder.app` 官方 CDN & Homebrew Cask） | 30 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
-| `win` | Windows（`Alibaba.Qoder` 官方安装包 & Winget） | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
-| `ubuntu` | Ubuntu / Linux（`Qoder-linux-amd64.deb` 与 `.rpm` 官方源） | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
+| `mac` | macOS（`Qoder.app` 官方 CDN & Homebrew Cask） | 31 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
+| `win` | Windows（`Alibaba.Qoder` 官方安装包 & Winget） | 29 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
+| `ubuntu` | Ubuntu / Linux（`Qoder-linux-amd64.deb` 与 `.rpm` 官方源） | 29 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
 | `ios` | iOS App Store（`com.qoder.mobile` 国际版与 `com.qoder.app.cn` 国内版） | 27 | `1.24.1` → `1.46.0` | [1.46.0](2026-11-12_1.46.0.md) |
-| `android` | Android（`com.qoder.mobile` 官方 APK CDN 与 Play） | 2 | `0.9.0` → `0.10.0` | [0.10.0](2026-11-15_0.10.0.md) |
+| `android` | Android（`com.qoder.mobile` 官方 APK CDN 与 Play） | 3 | `0.9.0` → `2.0.0` | [2.0.0](2026-11-27_2.0.0.md) |
 
 ## 桌面端版本索引（`mac` / `win` / `ubuntu`，最新 → 最早）
 
 | 版本 | 覆盖平台 | 发布日期 | 核心变更摘要 |
 |---|---|---|---|
+| [0.5.21](2026-11-27_0.5.21.md) | `mac`、`win`、`ubuntu` | 2026-11-27 | 官方 `0.5.20 → 0.5.21` 三端静态差分（Electron `43.8.4`，commit `eb36b7b303185facdb2ef70f0eaf9f8199b2c413`）：渲染层新增 `appHubError`/`loadingSyncSources`/`streamable_http`，主进程新增 `cloud-configuration:{list-apphub-items,sync-apphub-vault}` 与 2 条 `SDK JobToken` 遥测，Agent SDK `1.0.62-alpha.9 → alpha.10`、`qoderCliVersion` `1.1.96-hotfix.8 → hotfix.9`，worker 字符串表 `13,966` 条零增删；报告记录 `app.asar` `+13,300` B（`electronMain.js` `+9,814` B）与 `context-plugin`/`office-xlsx` 换包；代理诊断重跑提示与四项官方修复静态无法核验 |
 | [0.5.20](2026-11-25_0.5.20.md) | `mac`、`win`、`ubuntu` | 2026-11-25 | 官方 `0.5.18 → 0.5.20` 三端静态差分（Electron `43.8.4`；跨过未分析的 `0.5.19`；中间 `0.5.14`/`0.5.16`–`0.5.18` 尚未入仓）：`14` 条 `cloud-session:*` IPC + 扩展 `automations.*` IPC 与 `+6` `AUTOMATION_TASK_*` 错误码（`2 → 8`）、`19` 条 `automationPeer.*` 键 + `automations.read.v1`/`manage.v1` + `file-transfer.cjs`、`chat-session-recovery:*` + `20261119-00-chat-session-restart-resumption.sql`、`auth.deviceAccountBlocked.*` + `"Enterprise VPC sign-in"`、归档按组文案与 `fontSizeExtraLarge`/`uiScaleExtraLarge`、`20261121-00`/`01` 自动化迁移与 `20261123-01-async-question-order-clock`、`qodercli` `1.1.86-hotfix.19 → 1.1.96-hotfix.8`（`−826,457` B）、Agent SDK `1.0.62-alpha.2 → alpha.9`、`qoder.knowledge.center` 拆为 `wiki`+`qmind`、`@ali/qoder-text-sdk` `0.5.2`、`@qoder-space/in-app-browser` 及未公告的 Qwen/`statusline`/图标改动 |
 | [0.5.13](2026-11-16_0.5.13.md) | `mac` | 2026-11-16 | 官方 macOS `arm64` 双包静态差分（`0.5.12 → 0.5.13`，Electron `43.8.4`）：`ApplicationTransport.subscribe`（`Dta6yTTQ.js` → `BHeyMntc.js`）在保持 `64` 订阅上限下新增等待 `releaseRequested` 在途释放再复检及 30 秒 `"Application subscription limit reached"` 诊断日志、worker 解码字符串 `14,169 → 14,175`（`+6` 条 Bash 风险自评与 Auto 门控/黑名单/策略版本提示词及说明）、Agent SDK `1.0.60-alpha.50 → 1.0.60-alpha.62`、`qodercli` `1.1.86-hotfix.5 → 1.1.86-hotfix.5.2`、`qoder-office-xlsx` `xlsx-sidecar` 重编及官方其余 5 项分层对照 |
 | [0.5.12](2026-11-14_0.5.12.md) | `mac` | 2026-11-14 | 官方 macOS `arm64` 双包静态差分（`0.5.11 → 0.5.12`，Electron `43.8.4`）：Agent SDK `1.0.60-alpha.36 → 1.0.60-alpha.50`、`qodercli` `1.1.86-hotfix.4 → 1.1.86-hotfix.5`、worker 解密表新增 4 条 `transcript.resume.*` 字符串、`qoder-office-xlsx` `xlsx-sidecar` 重编、渲染层零字节变化及官方其余 4 项分栏对照 |
@@ -53,6 +54,7 @@
 
 | 版本 | 覆盖平台 | 发布日期 | 核心变更摘要 |
 |---|---|---|---|
+| [2.0.0](2026-11-27_2.0.0.md) | `android` | 2026-11-27 | 官方滚动 CDN 双包静态差分（`0.11.0`（`versionCode` `73`）→ `2.0.0`（`versionCode` `75`，`+11,590,803` B，`gitCommit=f42c8de801f896f74d4ba3db746ce59427f70bdb`）；`0.11.0` 从未入仓；官方移动端 changelog 停在 `0.11.0`、Google Play 仍为 `0.11.0`）：DEX 新增 `31` 条 `/api/v1/qbot*` 路径（`0 → 31`）、动态文案新增 `335` 条 `qbot.*`（`2,220 → 2,572`）、`features/qbot` 与 `QBOT_*` 事件码、`/signed-artifact-download`、清单新增 `USE_BIOMETRIC` 与 `device_management.remote_control.*`、Figma 连接器 SVG、`artifact_file_icons.ttf`、抽屉双模式与全套 `qbot_*` 资源（`2.0.0` DEX 未检出 `streamable_http`） |
 | [0.10.0](2026-11-15_0.10.0.md) | `android` | 2026-11-15 | 跨渠道静态差分（`0.9.0`（`versionCode` `67` APKPure Play XAPK）→ `0.10.0`（`versionCode` `70` 官方单 APK））：扩充 +11 组 `features/credits` 活动/奖励模型与 `assets/qoder_web_fetch.js`、`ModelManagementValue` + 23 条 `composer.model_management.*` 词条（含预览/模拟文案）、首页/抽屉/远程控制词条（`+79 / -3`）及 `OtlpTelemetryClient.exportTechnicalBatch` / `TechnicalSnapshot` / `recordScrollWindow` |
 | [1.46.0](2026-11-12_1.46.0.md) | `ios` | 2026-11-12 | `TODO`（`ios`）— _详细技术差分待补充_ |
 | [1.45.1](2026-11-11_1.45.1.md) | `ios` | 2026-11-11 | `TODO`（`ios`）— _详细技术差分待补充_ |

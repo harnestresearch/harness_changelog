@@ -2,7 +2,7 @@
 
 [English](../../claude/README.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](../full/claude/README.md)
 
-覆盖 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **534** 个统一版本号（桌面端 **245** 个版本 + 移动端 **289** 个版本）的完整演进索引。
+覆盖 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **535** 个统一版本号（桌面端 **245** 个版本 + 移动端 **290** 个版本）的完整演进索引。
 
 ## 五端覆盖概览
 
@@ -12,7 +12,7 @@
 | `win` | Windows（`Anthropic.Claude` Winget、Squirrel 与 MSIX） | 206 | `0.4.9` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ubuntu` | Ubuntu / Debian APT（`claude-desktop`） | 70 | `1.17180.0` → `5.11492.5` | [5.11492.5](2026-11-14_5.11492.5.md) |
 | `ios` | iOS App Store（`com.anthropic.claude`） | 171 | `1.240826.1` → `1.261109.19` | [1.261109.19](2026-11-11_1.261109.19.md) |
-| `android` | Android（`com.anthropic.claude`） | 155 | `1.240805.17` → `1.261124.19` | [1.261124.19](2026-11-25_1.261124.19.md) |
+| `android` | Android（`com.anthropic.claude`） | 156 | `1.240805.17` → `1.261125.19` | [1.261125.19](2026-11-27_1.261125.19.md) |
 
 ## 关键架构与功能里程碑
 
@@ -285,6 +285,7 @@
 
 | 版本 | 覆盖平台 | 发布日期 | 核心亮点 |
 |---|---|---|---|
+| [1.261125.19](2026-11-27_1.261125.19.md) | `android` | 2026-11-27（Uptodown 镜像） | 已归档 Uptodown 第三方 Play 原签分包 XAPK 静态对比（`1.261124.19 → 1.261125.19`；当前源页容器已轮换为 `39662257…`，不含 iOS，未做 `apksigner` 全量校验）：usage credits 自动续费引导（`code_limit_offer.step`）、IAP 政府照片证件采集指引（`iap.identity_check.*`、`PurchaseCancellation`）、Reflect（`cardinal`）后台通知/记忆前提/全删增量文案、GitHub 代建仓库流程与错误分类（`repository_picker.new_repository.*`）、1 分钟以内短视频限制、预览播放控件、移除旧反馈表单与 Ant 大纲文案、`config.x86_64.apk` 回归、语言分包 `21 → 20`、`1.261123.19`–`1.261125.19` 原生库未重建、DEX 仅增 `+0.29` MB、`66` 项 `uses-permission` 与 `83` 个组件不变 |
 | [1.261124.19](2026-11-25_1.261124.19.md) | `android` | 2026-11-25（Uptodown 镜像） | Uptodown 第三方 Play 原签分包 XAPK 静态对比（`1.261123.19 → 1.261124.19`；不含 iOS 与 `120`–`122` 缺口，未做 `apksigner` 全量校验）：GitHub 集成（`connect_github_card.*`、GitHub App 安装引导、PR/plan/工具调用审批失败分类）、约 12 条 safeguards 自动换模型文案、`places_list` Places 面板、usage 分区、默认 tab、项目 PHI 排除声明、朗读限额、移除 `continue_on_cloud.*`、语言分包 `28 → 21`、20 个原生库逐字节一致、权限/组件/API 端点零增删 |
 | [1.261113.19](2026-11-14_1.261113.19.md) | `android` | 2026-11-14 | Play-split XAPK 静态对比（`1.261112.18 → 1.261113.19`）：最低系统升至 Android 12L（`minSdkVersion` `32`）、语言分包 `27 → 30`、独立 `dictation`（含离线）与 `readaloud` 模块重构、CCR 项目设置/GitHub SSO/49 项底部导航扩充、下线旧 Threads 视图，并携带静态促销转额度/KYC 客户端代码 |
 | [1.261109.19](2026-11-11_1.261109.19.md) | `ios`、`android` | 2026-11-11 | `TODO`（`ios`、`android`）— _核心亮点待补充_ |

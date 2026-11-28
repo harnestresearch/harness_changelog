@@ -2,9 +2,21 @@
 
 English | [简体中文](../zh-CN/full/antigravity.md) · [Highlight](../antigravity.md) | **Full Detail**
 
-> See [antigravity/README.md](antigravity/README.md) for the five-platform technical index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering both Antigravity desktop tracks: **Antigravity Desktop (`antigravity-hub`, `2.35.2`)** and **Antigravity IDE (`2.7.0`)**.
+> See [antigravity/README.md](antigravity/README.md) for the five-platform technical index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering both Antigravity desktop tracks: **Antigravity Desktop (`antigravity-hub`, `2.36.0`)** and **Antigravity IDE (`2.8.0`)**.
 
-## Antigravity Desktop (Hub) 2.35.2 (2026-11-25, Package `Last-Modified`)
+## Antigravity Desktop (Hub) 2.36.0 (2026-11-27)
+
+See [antigravity/2026-11-27_2.36.0.md](antigravity/2026-11-27_2.36.0.md) for full details.
+
+- **Version-Only Shell & Rebased Go `language_server` (`2.36.0-5596661662220288`, `cl/1031268331`, Baseline `1030397722`)**
+  - Third consecutive version-only Electron `44.9.1` shell: `app.asar` (`1,167` extracted files, `20,690,656` B, SHA-256 `e0571155… → d2bc25ea…`, byte-identical across all six targets including first-time `windows-arm64` [`$PLUGINSDIR/app-arm64.7z`]) differs solely in `package.json` `version`; macOS `agy-desktop-rtc` grows `+22,592` B (`10,573,520 → 10,596,112` B).
+  - Rebased `language_server` (`darwin-arm` `196,625,792` B `−717,648` B, `linux-x64` `236,638,920` B `+6.6` MB, `linux-arm` `222,450,352` B; `strings` `+58,899 / −58,470`) expands Connect-RPCs `338 → 372` (`+34`, parallel `JetskiRemoteAgentProxyService` for remote agent lifecycle, files/permissions, sidecars, triggers, and blueprints), adds RemoteControl **Mesh** transport (`remotecontrol/meshclient`, WebChannel fallback), `policyguardian/sensitivity` (`+442` refs), Proctor J1/C8 supply-chain/firewall rules (`deps.dev`/GitHub advisories), `getsentry/sentry_go` (`523` symbols), `+4` named flags (`225 → 231` pairs, incl. `enable-resume-conversations-from-restart` and `enable-sidecar-pill-auto-open`), and `gemini-4-neonccpa → gemini-4-neondefault` (`44` models, `65` `*ToolConfig`, and `19` CUA actions unchanged).
+- **Official `v2.36.0` Notes (`13` Improvements + `26` Fixes) & Six-Target Coverage Boundaries**
+  - Remote-agent cloud automation triggers (RPC/service layer) and `~/.agents/skills` discovery (`~/.gemini` precedence) are corroborated statically in `language_server`; headline UI/Auto mode/voice-context/OAuth offline-access items and the `26` fixes are predominantly Hub webapp/server-side and not provable statically. `cl/1031268331` matches across all four macOS/Linux builds; **Windows `x64` and `arm64` `language_server` PEs remain uncovered**, and signature inspection was offline CMS chain parsing only.
+
+---
+
+## Prior Hub Release: 2.35.2 (2026-11-25, Package `Last-Modified`)
 
 See [antigravity/2026-11-25_2.35.2.md](antigravity/2026-11-25_2.35.2.md) for full details.
 
@@ -24,6 +36,19 @@ See [antigravity/2026-11-25_2.35.1.md](antigravity/2026-11-25_2.35.1.md) for ful
   - `app.asar` (`1,167` extracted files, `20,690,656` B, SHA-256 `99ff7f6c… → 9f0aad72…`, byte-identical across `darwin-arm`, `linux-x64`, and embedded `windows-x64`) differs solely in `package.json` `version` (`2.35.0` → `2.35.1`); Go `language_server` recompiles on shared baseline `1027784732` (`cl/1028447422 → cl/1029194470`, `darwin-arm` `+16,528` B, `linux-x64` same CL; `strings` `+799 / −792` build-metadata/closure/rodata noise only) with zero diff across RPC (`338`), flag-pair (`225`), model (`44`), `*ToolConfig` (`65`), and CUA (`19`) inventories, while macOS helper binaries recompile at identical sizes. All three official `v2.35.1` items (from a `2026-11-25` snapshot, not re-opened live) have **zero static footprint** in client packages.
 - **Stage 1 (`2.34.0` → `2.35.0`, `execution_id` `6394266482769920`) — Shell Reorganization & Rebased `language_server` Refactor (Attributed to `2.35.0`, Not `2.35.1`)**
   - Shell adds `appChannel.js`, `customWindowControls.js`, `computer/idleProbe.js`, `computer/permissionGuide.js`, and macOS `bin/agy-desktop-rtc` (`10,573,520` B), removing `computer/{hud,hudAgents,hudState}.js` (`chrome-devtools-mcp` `1.12.0` unchanged). Rebased `language_server` (`1025139341 → 1027784732`, `cl/1026637980 → cl/1028447422`, `+428,288` B, `strings` `+30,776 / −29,097`) contracts RPCs `380 → 338` (removing `GetUserMemories`, `GetKnowledgeItems`, `GetUnleashData`, `ImportFromCursor`, etc.), adds `AgentRemoteSession` CRUD/watch/reaction RPCs, `ListPluginPermissionGrants`/`RevokePluginPermissionGrant`, `ListRemoteAgents`, `agentapi` conversation CLI subcommands, `openai/openai_go` (`10,475` symbols), `enable-mcp-apps` / orchestrator / swarm flags (`204 → 225`), and `Gemini 4` suffix updates (`42 → 44`). Windows `language_server` PE/CL and `darwin-x64` were not covered; signature inspection was offline CMS chain parsing only.
+
+---
+
+## Antigravity IDE 2.8.0 (2026-11-19)
+
+See [antigravity/2026-11-19_ide-2.8.0.md](antigravity/2026-11-19_ide-2.8.0.md) for full details.
+
+- **Concentrated `extensions/agy` Update (`1.11.0` → `1.12.0`, `+66.9` KB) & Frozen 3-Release Base (`2.8.0-6733682917113856`)**
+  - Across `darwin-arm` (primary diff), `linux-x64`, and `windows-x64` (Code OSS `1.107.0` / `commit: 8dc5315a` / `languageServerCL: 1025045237` / Electron `39.2.3`), 100% of code changes live in `extensions/agy/{vscode/extension.js (+52,460 B, +74 literals / 0 deleted), bridge.js (+14,132 B), package.json (+660 B)}` plus macOS-only MSAL rebuilds (`libmsalruntime.dylib`, `msal-node-runtime.node`); `out/` (`27` files), `out/jetskiAgent/main.js` (`11,837,046` B, stripped `b674d91f…`), the `351`-method `LanguageServerService` descriptor (`a9f7b6f4…`), `agy/dist/extension.js` (`37` B), `node_modules/` (`2,628` comment-only diffs), and hub spawn mechanics remain frozen for a third consecutive release.
+- **Backend Management, `SwitchLoginToAuthCode`, Custom CA / Proxy & `+26` Iframe Schemas**
+  - Adds periodic update checks (`ANTIGRAVITY_PERIODIC_UPDATE_CHECK_INTERVAL_MS`, `ANTIGRAVITY_STALE_SERVER_UPGRADE_PROMPT_MS`, `"Restart Agent Server"`, `upgrade_prompt` telemetry) + `11` install-decision codes (`downgrade_skipped`, `same_version_rebuild`, `startup_background`, `check_deferred`, `staged_promoted`, etc.), direct `POST …/LanguageServerService/SwitchLoginToAuthCode` (outside the frozen `351`-method descriptor, targeting runtime `agy`) + `ANTIGRAVITY_REMOTE_OOB_AUTH` across `6` remote targets, `antigravity.caCertificates` + dual-prefix `geminicodeassist` CA & VS Code `http.proxy*` / env proxy reads, manifest `findInConversation` `ctrl+f`/`cmd+f`, and `+26` synchronized iframe schemas (`bridge.js` `2,137 → 2,163`: `Resolved*` customizations, `HarnessMessageStep`/experimental steps, model catalog, content layers).
+- **Official `v2.8.0` Notes (`7` Improvements + `5` Fixes) Reconciliation**
+  - `4` items are corroborated directly in `extensions/agy/`, `3` via static cues or manifest entry points, and `3` (*60s readiness timeout*, *Windows logoff recovery loop*, *Windows multi-window notification focus*) lie outside the static IDE package (in runtime `agy` CLI or remotely loaded webview).
 
 ---
 
@@ -63,7 +88,7 @@ See [antigravity/2026-11-13_2.32.0.md](antigravity/2026-11-13_2.32.0.md) for ful
 
 ---
 
-## Antigravity IDE 2.7.0 (Release Date Unconfirmed; Built 2026-11-11)
+## Prior IDE Release: Antigravity IDE 2.7.0 (Release Date Unconfirmed; Built 2026-11-11)
 
 See [antigravity/2026-11-11_ide-2.7.0.md](antigravity/2026-11-11_ide-2.7.0.md) for full details. _(Release time is unconfirmed; `2026-11-11 12:46` UTC+8 / `2026-11-11T04:46:27.114Z` in `product.json` is the build time, not the release time.)_
 

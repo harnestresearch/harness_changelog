@@ -2,9 +2,33 @@
 
 English | [简体中文](zh-CN/qoder.md) · **Highlight** | [Full Detail](full/qoder.md)
 
-> See [qoder/README.md](qoder/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 59 releases (up to `0.5.20` Desktop across `mac`/`win`/`ubuntu`, `1.46.0` iOS, and `0.10.0` Android; intermediate desktop versions between `0.5.13` and `0.5.20` are not yet cataloged in this repository).
+> See [qoder/README.md](qoder/README.md) for the complete five-platform index (`mac`, `win`, `ubuntu`, `ios`, `android`) covering all 61 releases (up to `0.5.21` Desktop across `mac`/`win`/`ubuntu`, `1.46.0` iOS, and `2.0.0` Android; intermediate desktop versions between `0.5.13` and `0.5.20` and intermediate Android `0.11.0` were never cataloged in this repository—Android `2.0.0` covers strictly `0.11.0 → 2.0.0`).
 
-## Latest Desktop Release: 0.5.20 (macOS / Windows / Linux, 2026-11-25)
+## Latest Desktop Release: 0.5.21 (macOS / Windows / Linux, 2026-11-27)
+
+See [qoder/2026-11-27_0.5.21.md](qoder/2026-11-27_0.5.21.md) for highlights, or [full/qoder/2026-11-27_0.5.21.md](full/qoder/2026-11-27_0.5.21.md) for full technical details. _(Official changelog heading `November 27, 2026` — "Everyday Polish" [no standalone `"Qoder 0.5.21"` heading line on the English page, bound via HTML anchors `id="0.5.21"` / `qoder-0521-everyday-polish`, Chinese 「日常优化」, updater manifests, and package metadata]; updater manifest `releaseDate` `2026-11-27T08:03:56.246Z` macOS / `08:14:31.290Z` Windows / `07:54:29.115Z` Linux; shared build commit `eb36b7b303185facdb2ef70f0eaf9f8199b2c413`. Covers adjacent pair `0.5.20 → 0.5.21` on macOS `arm64`, Windows `x64`, and Linux `amd64` `.deb` from versioned `releases/0.5.21/` URLs; `.rpm` manifest/HEAD only, `Qoder-mac-x64.zip` exists on CDN but not downloaded/analyzed, `Qoder-win-arm64-user.exe` returned 404, NSIS not disassembled, Android/iOS uncovered, not executed at runtime.)_
+
+### Highlights
+
+- **Feature — AppHub Connector Sync**: Official notes sync locally authorized Streamable HTTP connectors to the cloud for cloud agents and automations. Static inspection of extracted macOS `arm64` metadata verifies new renderer literals (`appHubError`, `loadingSyncSources`, `streamable_http`), main-process IPC (`cloud-configuration:list-apphub-items`, `cloud-configuration:sync-apphub-vault`), and two credential-chain telemetry strings (`SDK JobToken callback failed`, `SDK JobToken callback returned no credential`); cloud sync execution itself is unverified at runtime.
+- **Improvement & Fixes (Statically Unverifiable)**: Official notes add a prompt on the sign-in screen and Settings to re-run network diagnostics after changing proxy settings, plus four fixes (cloud automation editing leaving removed Skills/connectors or clearing selections early, device clock skew rejecting valid registration/pairing/reconnection, local tasks failing to load model lists under a system proxy, and Windows OpenSSH host verification failures). The decoded worker string table is byte-for-byte identical between `0.5.20` and `0.5.21` (`13,966 === 13,966`) and the static diff report records no new fix/prompt copy—none of these five items can be independently verified statically.
+- **Runtime & Hotfix Packaging**: Electron remains `43.8.4`; Agent SDK bumps `1.0.62-alpha.9 → 1.0.62-alpha.10` and `qoderCliVersion` bumps `1.1.96-hotfix.8 → 1.1.96-hotfix.9` (dependency set unchanged). Disk deltas: macOS `arm64` zip `−426` B, Windows `x64` `.exe` `−5,880` B, Windows `app.zip` `+8,652` B, Linux `amd64` `.deb` `+652,764` B; static diff report cites `app.asar` `+13,300` B (`electronMain.js` `+9,814` B) and `context-plugin`/`office-xlsx` archive updates.
+
+---
+
+## Latest Android Release: 2.0.0 (Android, 2026-11-27)
+
+See [qoder/2026-11-27_2.0.0.md](qoder/2026-11-27_2.0.0.md) for highlights, or [full/qoder/2026-11-27_2.0.0.md](full/qoder/2026-11-27_2.0.0.md) for full technical details. _(Date from official CDN rolling `qoder.apk` HTTP `Last-Modified`: `2026-11-27 14:44:05` UTC / `22:44:05` UTC+8. Official mobile changelog currently stops at `0.11.0` [`2026-11-25`] with no `2.0.0` entry, and Google Play still serves `0.11.0`—Play's `"Updated on Nov 27, 2026"` is **not** a `2.0.0` listing or release date. Intermediate Android `0.11.0` was never cataloged in this repository, so `0.10.0` is **not** the baseline—this entry covers strictly `0.11.0` [`versionCode` `73`] → `2.0.0` [`versionCode` `75`]; skipping `74` and `1.x` reflects official versioning policy. Pure two-APK static diff; iOS uncovered; not executed at runtime.)_
+
+### Highlights
+
+- **QBot Assistant (`features/qbot`, `31` `/api/v1/qbot*` Paths & `335` `qbot.*` Keys)**: Introduces QBot across manifest routes (`qbot`, `qbot_list`), DEX APIs (`0 → 31` `/api/v1/qbot*` paths plus `/signed-artifact-download` and `QBOT_ARTIFACT_*` event codes), `335` new `qbot.*` dynamic-content keys (`2,220 → 2,572`), dual-mode navigation drawer icons, `artifact_file_icons.ttf`, full `qbot_*` visual/audio assets, and Figma connector SVGs (`qbot_connector_figma*.svg`). `streamable_http` does **not** appear in `2.0.0` DEX.
+- **Biometric & Local Device Remote-Control Authorization (`USE_BIOMETRIC`)**: Adds `android.permission.USE_BIOMETRIC` in `AndroidManifest.xml` together with `device_management.remote_control.*` copy covering biometric authorization (`"Allow Qoder Mobile to remotely control this device"`), passcode fallback (`"Use device passcode"`), and keeping the device awake while Qoder runs (`"Keep this device awake"`).
+- **QBot Schedules, Automation-Run Extensions & Onboarding Assets**: Adds QBot schedule endpoints (`schedules`, `pause`, `unpause`), newly added `/api/v1/qcloud/cloud-automation-runs` and `/api/v1/remote/automation{s,-runs}` paths (distinct from `qcloud`/`remote` endpoints already present in `0.11.0`), `automation_history_empty_pendulum.webp`, and editor-connection GIFs (`home_connect_editor_{en,zh}_{dark,light}.gif`).
+
+---
+
+## Previous Desktop Release: 0.5.20 (macOS / Windows / Linux, 2026-11-25)
 
 See [qoder/2026-11-25_0.5.20.md](qoder/2026-11-25_0.5.20.md) for highlights, or [full/qoder/2026-11-25_0.5.20.md](full/qoder/2026-11-25_0.5.20.md) for full technical details. _(Official changelog heading `November 25, 2026` — "Cross-Device Collaboration and Cloud Tasks"; updater manifest `releaseDate` `2026-11-25T14:26:16.356Z` macOS / `14:34:35.952Z` Windows / `14:13:26.874Z` Linux. Intermediate desktop releases `0.5.14` and `0.5.16`–`0.5.19` are not yet recorded in this repository, so `0.5.13` is **not** the baseline—this entry covers strictly the `0.5.18 → 0.5.20` static diff, deliberately skipping `0.5.19`, which has no official changelog entry and was not analyzed. Full static diff on macOS `arm64`; Windows `x64` `exe`+`app.zip` and Linux `amd64` `.deb` sizes/SHA-256 verified with payload/Authenticode details from static package inspection, NSIS not disassembled, `.rpm` manifest SHA-256 only; macOS `x64`, Windows `arm64`, Android, and iOS uncovered; not executed at runtime.)_
 
@@ -28,7 +52,7 @@ See [qoder/2026-11-16_0.5.13.md](qoder/2026-11-16_0.5.13.md) for highlights, or 
 
 ---
 
-## Latest Android Release: 0.10.0 (Android, 2026-11-15)
+## Earlier Tracked Android Release: 0.10.0 (Android, 2026-11-15)
 
 See [qoder/2026-11-15_0.10.0.md](qoder/2026-11-15_0.10.0.md) for highlights, or [full/qoder/2026-11-15_0.10.0.md](full/qoder/2026-11-15_0.10.0.md) for full technical details. _(Google Play date `"Updated on Nov 15, 2026"`, exact storefront publish timestamp unconfirmed; official CDN `qoder.apk` `Last-Modified`: `2026-11-15 10:56:40` UTC. Static diff of APKPure Play-split XAPK `0.9.0` (`versionCode` `67`) vs. official universal single APK `0.10.0` (`versionCode` `70`); iOS not covered, APKs not executed, and `lib/`/`res/`/signing-key differences are subject to cross-channel packaging limits.)_
 

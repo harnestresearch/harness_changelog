@@ -2,9 +2,29 @@
 
 [English](../../full/qoder.md) | 简体中文 · [精简版 (Highlight)](../qoder.md) | **完整详情 (Full Detail)**
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 59 个历史版本索引（桌面端 `mac`/`win`/`ubuntu` 最新 `0.5.20`、iOS 最新 `1.46.0`、Android 最新 `0.10.0`；`0.5.13` 至 `0.5.20` 之间的中间桌面版本尚未入仓）见 [qoder/README.md](qoder/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 61 个历史版本索引（桌面端 `mac`/`win`/`ubuntu` 最新 `0.5.21`、iOS 最新 `1.46.0`、Android 最新 `2.0.0`；`0.5.13` 至 `0.5.20` 之间的中间桌面版本以及 Android `0.11.0` 从未入仓，Android `2.0.0` 仅覆盖 `0.11.0 → 2.0.0`）见 [qoder/README.md](qoder/README.md)。
 
-## 最新桌面版本：0.5.20（macOS / Windows / Linux，2026-11-25）
+## 最新桌面版本：0.5.21（macOS / Windows / Linux，2026-11-27）
+
+详细改动见 [qoder/2026-11-27_0.5.21.md](qoder/2026-11-27_0.5.21.md)。基于相邻对 **`0.5.20 → 0.5.21`** 官方版本化路径 `releases/0.5.21/` 三端包（macOS `arm64` / Windows `x64` / Linux `amd64` `.deb`）的静态对比（官方 changelog `November 27, 2026` — 英文 *"Everyday Polish"*［无独立 `"Qoder 0.5.21"` 标题行，经 HTML 锚点 `id="0.5.21"` / `qoder-0521-everyday-polish`、中文「日常优化」、清单与包内版本绑定］；更新清单 `releaseDate` 为 macOS `2026-11-27T08:03:56.246Z` / Windows `08:14:31.290Z` / Linux `07:54:29.115Z`；三端构建提交同为 `eb36b7b303185facdb2ef70f0eaf9f8199b2c413`，`buildNumber` macOS `94896589` / Windows `94896591`；`.rpm` 仅记清单与 HEAD 散列、`Qoder-mac-x64.zip` 在 CDN 存在但未取未分析、`Qoder-win-arm64-user.exe` 返回 404、NSIS 未反汇编、不涵盖 Android/iOS、未运行客户端）：
+
+- **AppHub 连接器同步与运行时小幅递增（独立核实）**：从 macOS `arm64` 归档及解包元数据（`Info.plist`、`build-manifest.json`、`package.json`）直接核实：Electron 保持 `43.8.4`、`@qoder-ai/qoder-agent-sdk`（`npm:@ali/qoder-agent-sdk-next`）与 `@qoder-ai/qoder-cn-agent-sdk`（`npm:@ali/qodercn-agent-sdk-next`）由 `1.0.62-alpha.9` 升至 `1.0.62-alpha.10`、`qoderCliVersion` 由 `1.1.96-hotfix.8` 升至 `1.1.96-hotfix.9`（依赖集合其余不变）。静态字符串检查证实渲染层新增 `appHubError`、`loadingSyncSources`、`streamable_http`，主进程新增 `cloud-configuration:list-apphub-items`、`cloud-configuration:sync-apphub-vault` 及两条遥测串（`SDK JobToken callback failed`、`SDK JobToken callback returned no credential`）。
+- **Worker 字符串表零变化与官方修复静态无法核验**：`0.5.20` 与 `0.5.21` 的 worker 解码字符串表均为 `13,966` 条且完全一致（`+0 / −0`），与静态差分报告记录的“无对应修复/提示新文案”相容；代理设置变更后的诊断重跑提示及四项官方修复（云自动化编辑、设备时钟差、系统代理模型列表加载、Windows OpenSSH 主机校验失败）均**静态无法核验**，未能在二进制中逐条证实。
+- **包体积差与报告引述细部统计**：盘上复算四包体积差与完整 SHA-256 均与清单及 `x-oss-meta-sha256` 一致（macOS `arm64` zip `−426` B、Windows `x64` `.exe` `−5,880` B、`app.zip` `+8,652` B、Linux `amd64` `.deb` `+652,764` B）。源自静态差分报告、未单独重新解包复现的细部统计包括：`app.asar` `+13,300` B（`electronMain.js` `+9,814` B）、渲染层 literals `+1,001` 且无修复文案、Windows `1,109` / Linux `1,101` 文件树逐哈希、Windows 签名表维持 `14,832` B、`.deb` `control` 仅变 `Version`/`Installed-Size`、`context-plugin`/`office-xlsx` 换包及 `93` 个同尺寸重签名二进制哈希变化。
+
+---
+
+## 最新 Android 版本：2.0.0（Android，2026-11-27）
+
+详细改动见 [qoder/2026-11-27_2.0.0.md](qoder/2026-11-27_2.0.0.md)。基于官方滚动 CDN 单体 APK **`0.11.0`（`versionCode` `73`，`30,147,702` B）→ `2.0.0`（`versionCode` `75`，`41,738,505` B，`+11,590,803` B）** 的纯双包静态差分（`Last-Modified`：`2026-11-27 14:44:05` UTC / 北京 `22:44:05`；同自签 `CN=Qoder cli` 发布证书 `a54169ccdb9b3898d7395746b2a9963900a7d1c5ab403eaf9eddbac103fe6066`；`gitCommit=01d86bf86b188d5f6204cda8b376f61aab8aa5f4 → f42c8de801f896f74d4ba3db746ce59427f70bdb`；中间版本 `0.11.0` 从未入仓，`0.10.0` **并非**对比基线；官方移动端 changelog 停在 `0.11.0`［`2026-11-25`］且 Google Play 仍为 `0.11.0`，Play 的 `"Updated on Nov 27, 2026"` **不得**当作 `2.0.0` 上架日或发布日；跳过 `74` 与 `1.x` 属官方版本策略；不涵盖 iOS，未安装运行）：
+
+- **QBot 助手形态（`features/qbot`、`31` 条 `/api/v1/qbot*` 路径与 `335` 条 `qbot.*` 文案）**：清单新增 `qbot`/`qbot_list`，DEX 新增 `31` 条 `/api/v1/qbot*` 路径（`0 → 31`，覆盖 `initialize`、`list`、`access`、`avatars` 及 `{bot_id}` 下 artifacts/connectors/environments/events/files/pause/resume/schedules/vm/worker-tasks）、`/signed-artifact-download` 与 `QBOT_*` 事件码；动态文案新增 `335` 条 `qbot.*`（`2,220 → 2,572`，`+352`；domestic 包约 `20 KB → 41 KB`）；新增全套 `qbot_*` 资源、Figma 连接器 SVG（`qbot_connector_figma*.svg`）、`artifact_file_icons.ttf` 与抽屉双模式图标（`drawer_home_mode.png`、`qbot_drawer_mode.png`）。`2.0.0` DEX 未检出 `streamable_http`。
+- **生物识别远程控制授权与防休眠（`USE_BIOMETRIC`）**：`AndroidManifest.xml` 新增 `android.permission.USE_BIOMETRIC`，并新增 `device_management.remote_control.*` 盘上原文键（`authentication_reason`、`use_passcode`、`keep_awake`、`keep_awake_description`、`allow`、`authentication_failed`、`authentication_unavailable`）。
+- **结构变化、自动化运行延伸与报告引述项**：归档条目 `1,215 → 1,253`（`+43 / −5 / 公共 1,210`；`classes.dex` `+469,940` B、`classes2.dex` `+1,243,880` B、`resources.arsc` `+147,528` B）；DEX 新增 `/api/v1/qcloud/cloud-automation-runs`、`/api/v1/remote/automations`、`/api/v1/remote/automation-runs`（其余不少 `qcloud`/`remote` 路径如 `/api/v1/qcloud/cloud-automations` 在 `0.11.0` 已存在），并新增 `automation_history_empty_pendulum.webp` 与 `home_connect_editor_{en,zh}_{dark,light}.gif`。`"40+"` DTO 全清单、Compose 组件全名、受 R8 重排影响的单 DEX 净增细节与灰度开放状态仅转述自静态差分报告。
+
+---
+
+## 前序桌面版本：0.5.20（macOS / Windows / Linux，2026-11-25）
 
 详细改动见 [qoder/2026-11-25_0.5.20.md](qoder/2026-11-25_0.5.20.md)。基于 **`0.5.18 → 0.5.20`** 三端官方包（macOS `arm64` / Windows `x64` / Linux `amd64`）静态对比（官方 changelog `November 25, 2026` — *"Cross-Device Collaboration and Cloud Tasks"*；更新清单 `releaseDate` 为 macOS `2026-11-25T14:26:16.356Z` / Windows `14:34:35.952Z` / Linux `14:13:26.874Z`，三端构建 commit 同为 `aacc1a53…`；中间桌面版 `0.5.14` 与 `0.5.16`–`0.5.19` 尚未入仓，`0.5.13` **并非**对比基线，且刻意跨过无官方 changelog 条目、未下载未分析的 `0.5.19`；macOS `arm64` 全量静态解包分析，Windows `x64` `exe`+`app.zip` 与 Linux `amd64` `.deb` 核验体积与清单 SHA-256、其内部文件树与 Authenticode 核验沿用静态拆包记录且未在此重解包，Windows NSIS 未反汇编，`.rpm` 仅记录清单 SHA-256；未覆盖 macOS `x64`、Windows `arm64`、Android、iOS；未运行客户端）：
 
@@ -24,7 +44,7 @@
 
 ---
 
-## 最新 Android 版本：0.10.0（Android，2026-11-15）
+## 更早入仓 Android 版本：0.10.0（Android，2026-11-15）
 
 详细改动见 [qoder/2026-11-15_0.10.0.md](qoder/2026-11-15_0.10.0.md)。基于 APKPure Google Play 拆分包 `0.9.0`（`versionCode` `67`，`minSdkVersion` `28`，`targetSdkVersion` `36`）与官方单体通用包 `0.10.0`（`versionCode` `70`；Play 日期 `2026-11-15` 无精确时刻，官方 CDN `Last-Modified`：`2026-11-15 10:56:40` UTC）的跨渠道静态差分（不涵盖 iOS，未运行 APK；`lib/`/`res/`/`resources.arsc` 及壳层清单受拆分包 vs 单体包影响不可直接比，签名密钥 `ddf5ab4a…` vs `a54169cc…` 差异原因仅属推测）：
 

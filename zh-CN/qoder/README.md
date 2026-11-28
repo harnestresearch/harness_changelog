@@ -2,22 +2,23 @@
 
 [English](../../qoder/README.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](../full/qoder/README.md)
 
-覆盖 Qoder 自 `1.24.1`（2026-07-16）至 `0.5.20`（2026-11-25）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **59** 个版本条目的完整演进索引（含 **30** 个桌面/跨端版本与 **29** 个移动端独立版本；中间桌面版本 `0.5.14` 与 `0.5.16`–`0.5.19` 尚未入仓）。
+覆盖 Qoder 自 `1.24.1`（2026-07-16）至 `0.5.21` 桌面端 / `2.0.0` Android（2026-11-27）在 `mac`、`win`、`ubuntu`、`ios`、`android` 五端共 **61** 个版本条目的完整演进索引（含 **31** 个桌面/跨端版本与 **30** 个移动端独立版本；中间桌面版本 `0.5.14` 与 `0.5.16`–`0.5.19` 以及 Android `0.11.0` 从未入仓，Android `2.0.0` 仅覆盖 `0.11.0 → 2.0.0`）。
 
 ## 五端覆盖概览
 
 | 平台 | 分发渠道 / 包名 | 收录版本数 | 版本范围 | 最新版本 |
 |---|---|---|---|---|
-| `mac` | macOS（`Qoder.app` 官方 CDN & Homebrew Cask） | 30 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
-| `win` | Windows（`Alibaba.Qoder` 官方安装包 & Winget） | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
-| `ubuntu` | Ubuntu / Linux（`Qoder-linux-amd64.deb` 与 `.rpm` 官方源） | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
+| `mac` | macOS（`Qoder.app` 官方 CDN & Homebrew Cask） | 31 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
+| `win` | Windows（`Alibaba.Qoder` 官方安装包 & Winget） | 29 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
+| `ubuntu` | Ubuntu / Linux（`Qoder-linux-amd64.deb` 与 `.rpm` 官方源） | 29 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
 | `ios` | iOS App Store（`com.qoder.mobile` 国际版与 `com.qoder.app.cn` 国内版） | 27 | `1.24.1` → `1.46.0` | [1.46.0](2026-11-12_1.46.0.md) |
-| `android` | Android（`com.qoder.mobile` 官方 APK CDN 与 Play） | 2 | `0.9.0` → `0.10.0` | [0.10.0](2026-11-15_0.10.0.md) |
+| `android` | Android（`com.qoder.mobile` 官方 APK CDN 与 Play） | 3 | `0.9.0` → `2.0.0` | [2.0.0](2026-11-27_2.0.0.md) |
 
 ## 桌面端版本索引（`mac` / `win` / `ubuntu`，最新 → 最早）
 
 | 版本 | 覆盖平台 | 发布日期 | 核心亮点 |
 |---|---|---|---|
+| [0.5.21](2026-11-27_0.5.21.md) | `mac`、`win`、`ubuntu` | 2026-11-27 | 官方 `0.5.20 → 0.5.21` 三端静态差分（「日常优化」/ "Everyday Polish"）：AppHub 连接器同步（Streamable HTTP 已授权连接器上云，静态核实 `appHubError`/`loadingSyncSources`/`streamable_http` 渲染层串、`cloud-configuration:{list-apphub-items,sync-apphub-vault}` 与 2 条 `SDK JobToken` 遥测）、Agent SDK `1.0.62-alpha.10` 与 `qodercli` `1.1.96-hotfix.9`（Electron `43.8.4`，worker 字符串表 `13,966` 条完全一致）；代理诊断重跑提示及四项官方修复（云自动化编辑、设备时钟差、系统代理模型列表、Windows OpenSSH 主机校验）均静态无法核验 |
 | [0.5.20](2026-11-25_0.5.20.md) | `mac`、`win`、`ubuntu` | 2026-11-25 | 官方 `0.5.18 → 0.5.20` 三端静态差分（跨过未分析的 `0.5.19`；中间 `0.5.14`/`0.5.16`–`0.5.18` 尚未入仓）：桌面云端任务、跨设备协作（`automationPeer.*`、跨设备工作区文件下载、`automations.read.v1`/`manage.v1`）、退出/更新后本地任务恢复、受管设备企业账号登录限制、归档任务按组恢复/删除、超大字体与 `125%` 独立缩放入口、四项官方修复（含 Remote Control 顺序与自动化断线重试/索引，以及插件迁移/受限 Windows 局部线索），及未公告的 `qodercli` `1.1.96-hotfix.8`、`knowledge.center` 拆为 `wiki`+`qmind`、`@ali/qoder-text-sdk`、`@qoder-space/in-app-browser`、Qwen 登录文案与图标刷新 |
 | [0.5.13](2026-11-16_0.5.13.md) | `mac` | 2026-11-16 | 官方 macOS `arm64` 双包静态差分（`0.5.12 → 0.5.13`）：`ApplicationTransport.subscribe` 在保持 `64` 订阅上限不变下新增等待 `releaseRequested` 在途释放再复检与 30 秒限频日志（对应切任务打不开属静态推断）、worker 解码表新增 6 条 Bash 风险自评与本地 Auto 审批提示词/说明（`14,169 → 14,175`）、Agent SDK `1.0.60-alpha.62` 与 `qodercli` `1.1.86-hotfix.5.2`、`xlsx-sidecar` 重建，并分层对照其余 5 项官方说明 |
 | [0.5.12](2026-11-14_0.5.12.md) | `mac` | 2026-11-14 | 官方 macOS `arm64` 双包静态差分（`0.5.11 → 0.5.12`）：新增 4 条 `transcript.resume.*` 会话恢复校验字符串（静态证据）、Agent SDK 升至 `1.0.60-alpha.50` 与 `qodercli` `1.1.86-hotfix.5`、`qoder-office-xlsx` `xlsx-sidecar` 重编打包，并分栏对照其余 4 项无新本地静态证据的官方说明 |
@@ -53,6 +54,7 @@
 
 | 版本 | 覆盖平台 | 发布日期 | 核心亮点 |
 |---|---|---|---|
+| [2.0.0](2026-11-27_2.0.0.md) | `android` | 2026-11-27 | 官方滚动 CDN 双包静态差分（`0.11.0`（`73`）→ `2.0.0`（`75`）；`0.11.0` 从未入仓；官方移动端日志停在 `0.11.0`、Play 仍为 `0.11.0`）：全新 QBot 助手（`features/qbot`、`31` 条 `/api/v1/qbot*` 路径、`335` 条 `qbot.*` 文案、抽屉双模式、`artifact_file_icons.ttf`、Figma 连接器 SVG）、新增 `USE_BIOMETRIC` 与 `device_management.remote_control.*` 远程控制授权/防休眠文案，以及 QBot 定时任务与自动化运行接口 |
 | [0.10.0](2026-11-15_0.10.0.md) | `android` | 2026-11-15 | 跨渠道静态对比（`0.9.0`（`67`）→ `0.10.0`（`70`））：扩充既有 `features/credits` 权益中心模型并引入 `qoder_web_fetch.js` 桥、新增 `ModelManagementValue` 与思考强度/上下文文案（含预览/模拟提示）、精简首页引导与导航抽屉，并扩充 `OtlpTelemetryClient` 技术批处理遥测 API |
 | [1.46.0](2026-11-12_1.46.0.md) | `ios` | 2026-11-12 | `TODO`（`ios`）— _核心亮点待补充_ |
 | [1.45.1](2026-11-11_1.45.1.md) | `ios` | 2026-11-11 | `TODO`（`ios`）— _核心亮点待补充_ |

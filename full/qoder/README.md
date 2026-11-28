@@ -2,22 +2,23 @@
 
 English | [简体中文](../../zh-CN/full/qoder/README.md) · [Highlight](../../qoder/README.md) | **Full Detail**
 
-Complete multi-platform version history covering all **59** unified releases of Qoder from `1.24.1` (2026-07-16) to `0.5.20` (2026-11-25) across `mac`, `win`, `ubuntu`, `ios`, and `android` (**30** Desktop/Unified releases + **29** Mobile-only releases; intermediate desktop versions `0.5.14` and `0.5.16`–`0.5.19` are not yet cataloged).
+Complete multi-platform version history covering all **61** unified releases of Qoder from `1.24.1` (2026-07-16) to `0.5.21` Desktop / `2.0.0` Android (2026-11-27) across `mac`, `win`, `ubuntu`, `ios`, and `android` (**31** Desktop/Unified releases + **30** Mobile-only releases; intermediate desktop versions `0.5.14` and `0.5.16`–`0.5.19` and intermediate Android `0.11.0` were never cataloged in this repository—Android `2.0.0` covers strictly `0.11.0 → 2.0.0`).
 
 ## Five-Platform Coverage Overview
 
 | Platform | Distribution / Package | Tracked Releases | Version Range | Latest Version |
 |---|---|---|---|---|
-| `mac` | macOS (`Qoder.app` CDN & Homebrew Cask) | 30 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
-| `win` | Windows (`Alibaba.Qoder` Setup CDN & Winget) | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
-| `ubuntu` | Ubuntu / Linux (`Qoder-linux-amd64.deb` & `.rpm` CDN) | 28 | `0.1.0` → `0.5.20` | [0.5.20](2026-11-25_0.5.20.md) |
+| `mac` | macOS (`Qoder.app` CDN & Homebrew Cask) | 31 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
+| `win` | Windows (`Alibaba.Qoder` Setup CDN & Winget) | 29 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
+| `ubuntu` | Ubuntu / Linux (`Qoder-linux-amd64.deb` & `.rpm` CDN) | 29 | `0.1.0` → `0.5.21` | [0.5.21](2026-11-27_0.5.21.md) |
 | `ios` | iOS App Store (`com.qoder.mobile` & `com.qoder.app.cn`) | 27 | `1.24.1` → `1.46.0` | [1.46.0](2026-11-12_1.46.0.md) |
-| `android` | Android (`com.qoder.mobile` Official APK CDN & Play) | 2 | `0.9.0` → `0.10.0` | [0.10.0](2026-11-15_0.10.0.md) |
+| `android` | Android (`com.qoder.mobile` Official APK CDN & Play) | 3 | `0.9.0` → `2.0.0` | [2.0.0](2026-11-27_2.0.0.md) |
 
 ## Desktop Version Index (`mac` / `win` / `ubuntu`, Newest → Oldest)
 
 | Version | Platforms | Release Date | Key Changes |
 |---|---|---|---|
+| [0.5.21](2026-11-27_0.5.21.md) | `mac`, `win`, `ubuntu` | 2026-11-27 | Official `0.5.20 → 0.5.21` static diff (Electron `43.8.4`, commit `eb36b7b303185facdb2ef70f0eaf9f8199b2c413`): renderer `appHubError`/`loadingSyncSources`/`streamable_http`, main `cloud-configuration:{list-apphub-items,sync-apphub-vault}` + 2 `SDK JobToken` telemetry strings, Agent SDK `1.0.62-alpha.9 → alpha.10`, `qoderCliVersion` `1.1.96-hotfix.8 → hotfix.9`, identical `13,966`-entry worker string table (`+0 / −0`); static report notes `app.asar` `+13,300` B (`electronMain.js` `+9,814` B) & `context-plugin`/`office-xlsx` swaps; proxy diagnostic prompt and 4 official fixes statically unverifiable |
 | [0.5.20](2026-11-25_0.5.20.md) | `mac`, `win`, `ubuntu` | 2026-11-25 | Official `0.5.18 → 0.5.20` static diff (Electron `43.8.4`; skipping unanalyzed `0.5.19`; intermediate `0.5.14`/`0.5.16`–`0.5.18` not yet cataloged): `14` `cloud-session:*` IPC channels + expanded `automations.*` IPC & `+6` `AUTOMATION_TASK_*` codes (`2 → 8`), `19` `automationPeer.*` keys + `automations.read.v1`/`manage.v1` + `file-transfer.cjs`, `chat-session-recovery:*` + `20261119-00-chat-session-restart-resumption.sql`, `auth.deviceAccountBlocked.*` + `"Enterprise VPC sign-in"`, archive group UI & `fontSizeExtraLarge`/`uiScaleExtraLarge`, `20261121-00`/`01` automation migrations & `20261123-01-async-question-order-clock`, `qodercli` `1.1.86-hotfix.19 → 1.1.96-hotfix.8` (`−826,457` B), Agent SDK `1.0.62-alpha.2 → alpha.9`, `qoder.knowledge.center` → `wiki`+`qmind` split, `@ali/qoder-text-sdk` `0.5.2`, `@qoder-space/in-app-browser`, and unannounced Qwen/`statusline`/icon changes |
 | [0.5.13](2026-11-16_0.5.13.md) | `mac` | 2026-11-16 | Official macOS `arm64` static diff (`0.5.12 → 0.5.13`, Electron `43.8.4`): `ApplicationTransport.subscribe` (`Dta6yTTQ.js` → `BHeyMntc.js`) awaits `releaseRequested` releases at the unchanged `64`-subscription cap with 30s `"Application subscription limit reached"` diagnostics, worker strings `14,169 → 14,175` (`+6` Bash risk / Auto gate / blacklist / policy-version prompt & telemetry strings), Agent SDK `1.0.60-alpha.50 → 1.0.60-alpha.62`, `qodercli` `1.1.86-hotfix.5 → 1.1.86-hotfix.5.2`, `qoder-office-xlsx` `xlsx-sidecar` rebuild, and tiered stratification for 5 remaining official fix notes |
 | [0.5.12](2026-11-14_0.5.12.md) | `mac` | 2026-11-14 | Official macOS `arm64` static diff (`0.5.11 → 0.5.12`, Electron `43.8.4`): Agent SDK `1.0.60-alpha.36 → 1.0.60-alpha.50`, `qodercli` `1.1.86-hotfix.4 → 1.1.86-hotfix.5`, 4 new `transcript.resume.*` decoded worker strings, `qoder-office-xlsx` `xlsx-sidecar` rebuild, byte-identical renderer, and separated comparison for 4 official changelog items |
@@ -53,6 +54,7 @@ Complete multi-platform version history covering all **59** unified releases of 
 
 | Version | Platforms | Release Date | Key Changes |
 |---|---|---|---|
+| [2.0.0](2026-11-27_2.0.0.md) | `android` | 2026-11-27 | Official rolling-CDN static diff (`0.11.0` (`versionCode` `73`) → `2.0.0` (`versionCode` `75`, `+11,590,803` B, `gitCommit=f42c8de801f896f74d4ba3db746ce59427f70bdb`); intermediate `0.11.0` never cataloged; mobile changelog stops at `0.11.0` and Play still serves `0.11.0`): `31` `/api/v1/qbot*` DEX paths (`0 → 31`), `335` `qbot.*` keys (`2,220 → 2,572`), `features/qbot` + `QBOT_*` event codes, `/signed-artifact-download`, `android.permission.USE_BIOMETRIC` + `device_management.remote_control.*`, Figma connector SVGs, `artifact_file_icons.ttf`, dual-mode drawer & `qbot_*` assets (`streamable_http` absent in `2.0.0` DEX) |
 | [0.10.0](2026-11-15_0.10.0.md) | `android` | 2026-11-15 | Cross-channel static diff (`0.9.0` (`versionCode` `67` APKPure Play XAPK) → `0.10.0` (`versionCode` `70` official universal APK)): +11 `features/credits` campaign/reward models & `assets/qoder_web_fetch.js`, `ModelManagementValue` + 23 `composer.model_management.*` keys (including preview/simulate strings), homepage/drawer/Remote Control copy (`+79 / -3` keys), and `OtlpTelemetryClient.exportTechnicalBatch` / `TechnicalSnapshot` / `recordScrollWindow` |
 | [1.46.0](2026-11-12_1.46.0.md) | `ios` | 2026-11-12 | `TODO` (`ios`) — _detailed diff pending_ |
 | [1.45.1](2026-11-11_1.45.1.md) | `ios` | 2026-11-11 | `TODO` (`ios`) — _detailed diff pending_ |

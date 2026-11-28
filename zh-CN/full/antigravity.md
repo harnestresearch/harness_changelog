@@ -2,9 +2,21 @@
 
 [English](../../full/antigravity.md) | 简体中文 · [精简版 (Highlight)](../antigravity.md) | **完整详情 (Full Detail)**
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）技术版本索引（覆盖 **Antigravity Desktop / Hub `2.35.2`** 与 **Antigravity IDE `2.7.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）技术版本索引（覆盖 **Antigravity Desktop / Hub `2.36.0`** 与 **Antigravity IDE `2.8.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
 
-## Antigravity Desktop（Hub）2.35.2（2026-11-25，包 `Last-Modified`）
+## Antigravity Desktop（Hub）2.36.0（2026-11-27）
+
+详细改动见 [antigravity/2026-11-27_2.36.0.md](antigravity/2026-11-27_2.36.0.md)。
+
+- **壳层纯版本号递增与 Go `language_server` rebase 更新（`2.36.0-5596661662220288`，`cl/1031268331`，基线 `1030397722`）**
+  - Electron `44.9.1` 壳层连续第三版纯版本号变更：`app.asar`（`1,167` 文件、`20,690,656` B，SHA-256 `e0571155… → d2bc25ea…`，六端逐字节一致，首次覆盖 `windows-arm64`［`$PLUGINSDIR/app-arm64.7z`］）仅 `package.json` 版本号更新；macOS `agy-desktop-rtc` 增大 `+22,592` B（`10,573,520 → 10,596,112` B）。
+  - `language_server` rebase（`darwin-arm` `196,625,792` B `−717,648` B、`linux-x64` `236,638,920` B `+6.6` MB、`linux-arm` `222,450,352` B；`strings` `+58,899 / −58,470`），Connect-RPC 增至 `372`（`+34`，并列新服务 `JetskiRemoteAgentProxyService`，涵盖 Agent 生命周期/文件权限/Sidecar/Trigger/Blueprint），新增 RemoteControl **Mesh** 传输（`remotecontrol/meshclient`，WebChannel 回退）、`policyguardian/sensitivity`（`+442` 引用）、Proctor J1/C8 供应链与防火墙规则（查询 `deps.dev`/GitHub）、`getsentry/sentry_go`（`523` 符号）、`+4` 具名开关（`225 → 231` 对，含 `enable-resume-conversations-from-restart` 与 `enable-sidecar-pill-auto-open`）及 `gemini-4-neonccpa → gemini-4-neondefault`（模型 `44`、`*ToolConfig` `65` 与 CUA `19` 零变化）。
+- **官方 `v2.36.0` 说明（`13` 项改进 + `26` 项修复）与六端覆盖边界**
+  - 远程智能体云端自动化授权（RPC/服务面）与 `~/.agents/skills` 自定义技能发现（`~/.gemini` 优先）获 `language_server` 静态实证；标题级 UI/Auto mode/语音上下文/MCP OAuth 离线访问及 `26` 项修复主要归属 Hub webapp/服务端，静态不可证。四端 macOS/Linux 均核实为 `cl/1031268331`；**Windows `x64`/`arm64` 两端 `language_server` PE 仍未覆盖**，签名仅做离线 CMS 链解析。
+
+---
+
+## 前序 Hub 版本：2.35.2（2026-11-25，包 `Last-Modified`）
 
 详细改动见 [antigravity/2026-11-25_2.35.2.md](antigravity/2026-11-25_2.35.2.md)。
 
@@ -24,6 +36,19 @@
   - `app.asar`（`1,167` 文件、`20,690,656` B，SHA-256 `99ff7f6c… → 9f0aad72…`，`darwin-arm`/`linux-x64`/Windows 内嵌三端逐字节一致）相对 `2.35.0` 仅 `package.json` 版本号升至 `2.35.1`；Go `language_server` 同基线（`1027784732`）重编译（`cl/1028447422 → cl/1029194470`，`darwin-arm` `+16,528` B、`linux-x64` 同 CL；去重 `strings` `+799 / −792` 全为构建元数据/闭包/rodata 噪声），RPC（`338`）、开关对（`225`）、模型（`44`）、`*ToolConfig`（`65`）与 CUA（`19`）五口径零 diff，macOS 副件同大小重编译。既有 `2026-11-25` 快照记录的官方 `v2.35.1` 三条变更在两段安装包内均**无静态落点**（Hub webapp/运行时侧）。
 - **段一（`2.34.0` → `2.35.0`，构建号 `6394266482769920`）—— 壳层重组与 `language_server` rebase 重构（归属 `2.35.0`，不归因 `2.35.1`）**
   - 壳层新增 `appChannel.js`、`customWindowControls.js`、`computer/idleProbe.js`、`computer/permissionGuide.js` 与 macOS `bin/agy-desktop-rtc`（`10,573,520` B），移出 `computer/{hud,hudAgents,hudState}.js`（`chrome-devtools-mcp` `1.12.0` 不变）。`language_server` rebase（`1025139341 → 1027784732`，`cl/1026637980 → cl/1028447422`，`+428,288` B，`strings` `+30,776 / −29,097`）收缩 RPC `380 → 338`（移除 `GetUserMemories`/`GetKnowledgeItems`/`GetUnleashData`/`ImportFromCursor` 等），新增 `AgentRemoteSession` CRUD/订阅/reaction、`ListPluginPermissionGrants`/`RevokePluginPermissionGrant`、`ListRemoteAgents`、`agentapi` 会话管理 CLI、`openai/openai_go`（`10,475` 符号）、`enable-mcp-apps`/orchestrator/swarm 开关（`204 → 225`）及模型资格后缀重排（`42 → 44`）。Windows `language_server` PE/CL 与 `darwin-x64` 未覆盖；签名仅做离线 CMS 链解析。
+
+---
+
+## Antigravity IDE 2.8.0（2026-11-19）
+
+详细改动见 [antigravity/2026-11-19_ide-2.8.0.md](antigravity/2026-11-19_ide-2.8.0.md)。
+
+- **实质代码高度收敛于 `extensions/agy`（`1.11.0` → `1.12.0`，`+66.9` KB）与三连版冻结基座（`2.8.0-6733682917113856`）**
+  - 跨 `darwin-arm`（主分析）、`linux-x64` 与 `windows-x64`（Code OSS `1.107.0` / `commit: 8dc5315a` / `languageServerCL: 1025045237` / Electron `39.2.3`），全部业务代码变更集中在 `extensions/agy/{vscode/extension.js (+52,460 B / +74 字面量 / 0 删除), bridge.js (+14,132 B), package.json (+660 B)}` 与 macOS 独有 MSAL 重编译（`libmsalruntime.dylib`、`msal-node-runtime.node`）；`out/`（`27` 文件）、`out/jetskiAgent/main.js`（`11,837,046` B，剥注释 `b674d91f…`）、`351` 方法 `LanguageServerService` 描述符（`a9f7b6f4…`）、`agy/dist/extension.js`（`37` B）、`node_modules/`（`2,628` 尾注释差异）与 hub 启动脚手架连续三版冻结。
+- **后端管理面增强、`SwitchLoginToAuthCode`、自定义 CA / 代理与 `+26` Iframe Schema**
+  - 新增周期更新检查（`ANTIGRAVITY_PERIODIC_UPDATE_CHECK_INTERVAL_MS`、`ANTIGRAVITY_STALE_SERVER_UPGRADE_PROMPT_MS`、`"Restart Agent Server"`、`upgrade_prompt` 遥测）+ `11` 个安装决策遥测码（`downgrade_skipped`、`same_version_rebuild`、`startup_background`、`check_deferred`、`staged_promoted` 等）、直连 `POST …/LanguageServerService/SwitchLoginToAuthCode`（冻结 `351` 描述符外方法，指向运行时 `agy`）+ `ANTIGRAVITY_REMOTE_OOB_AUTH` 与 `6` 类远端目标、`antigravity.caCertificates` + `geminicodeassist` 双前缀 CA 及 VS Code `http.proxy*`/代理环境变量读取、Manifest `findInConversation` `ctrl+f`/`cmd+f`，以及两侧同步扩容的 `+26` 个 iframe Schema（`bridge.js` `2,137 → 2,163`：`Resolved*` 定制解析、`HarnessMessageStep`/实验步骤、模型目录、内容层）。
+- **官方 `v2.8.0` 说明（`7` 项改进 + `5` 项修复）核对**
+  - `4` 项在 `extensions/agy/` 包内实证、`3` 项获静态线索或命令入口实证，另有 `3` 项（*60s 就绪超时*、*Windows 注销恢复死循环修复*、*Windows 多窗口通知聚焦修复*）不在 IDE 静态包面内（归属运行时 `agy` CLI 或远程 webview）。
 
 ---
 
@@ -63,7 +88,7 @@
 
 ---
 
-## Antigravity IDE 2.7.0（发布时间未确认；构建于 2026-11-11）
+## 前序 IDE 版本：Antigravity IDE 2.7.0（发布时间未确认；构建于 2026-11-11）
 
 详细改动见 [antigravity/2026-11-11_ide-2.7.0.md](antigravity/2026-11-11_ide-2.7.0.md)。_（发布时间未确认；`product.json` 中的北京时间 `2026-11-11 12:46` / `2026-11-11T04:46:27.114Z` 是构建时间，不是发布时间。）_
 

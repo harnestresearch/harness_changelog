@@ -2,15 +2,15 @@
 
 [English](../claude.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](full/claude.md)
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 534 个历史版本索引（桌面端 245 个 + 移动端 289 个）见 [claude/README.md](claude/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）完整 535 个历史版本索引（桌面端 245 个 + 移动端 290 个）见 [claude/README.md](claude/README.md)。
 
-## 最新 Android 版本：1.261124.19（Android，2026-11-25 Uptodown 镜像窗口）
+## 最新 Android 版本：1.261125.19（Android，2026-11-27 Uptodown 镜像窗口）
 
-核心亮点见 [claude/2026-11-25_1.261124.19.md](claude/2026-11-25_1.261124.19.md)，完整技术细节见 [full/claude/2026-11-25_1.261124.19.md](full/claude/2026-11-25_1.261124.19.md)。_（发布窗口约 `2026-11-25/26`，不精确：Uptodown 标注 `Nov 25, 2026` 且附 `"Matches the published version"`，而 `2026-11-26` Play 美区快照仍停留 `"Updated on: Nov 24, 2026"` 且无版本号。基于 **Uptodown 第三方镜像** Play 原签分包 XAPK `1.261123.19 → 1.261124.19` 静态对比，非直接来自 Play 官方下载；未做 `apksigner` 全量校验，不涵盖 iOS 与 `1.261120.19`–`1.261122.*` 缺口，未运行 APK，静态在场不代表已放量。）_
+核心亮点见 [claude/2026-11-27_1.261125.19.md](claude/2026-11-27_1.261125.19.md)，完整技术细节见 [full/claude/2026-11-27_1.261125.19.md](full/claude/2026-11-27_1.261125.19.md)。_（发布窗口 `2026-11-26/27`：Uptodown 标注 `"Nov 27, 2026"` + `"Matches the published version"`；Google Play 美区可见 `"Updated on Nov 26, 2026"`［无版本号］，源码将 `1.261125.19` 与 unix `1795755160`［美西 `2026-11-26 20:52:40` / 北京 `2026-11-27 12:52:40`］同簇。基于已归档 **Uptodown 第三方镜像** Play 原签分包 XAPK `1.261124.19 → 1.261125.19`［样本 `801b77ee…`］静态对比；当前 Uptodown 源页已轮换为另一份 `44.03 MB` / `39662257…` 容器且未分析。未做 `apksigner` 全量校验，不涵盖 iOS，未运行 APK，静态在场不代表已放量。）_
 
-- **GitHub 深度集成与 PR / Plan / 工具调用审批流**：新增 `claudeai.code.connect_github_card.*` 遥测、Claude GitHub App 安装引导、PR/plan/工具调用审批失败分类、组织连接器审批提示、`CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}` 及云环境配置引导。
-- **Safeguards 换模型文案与 Places 面板**：移动端新增约 12 条面向 biology/cybersecurity/sensitive topics 的 safeguards 自动换模型文案、新增 `claudeai.places_list.*` Places 面板与 `voice.reachability_checked`，并新增 usage 分区、`Default tab` 设置、明示排除 PHI 的项目指令编辑、共享会话链接提示、朗读限额及约 20 条登录/维护/限额错误文案，同时收缩/移除 `continue_on_cloud.*`（`8 → 1`）、`ready_made_card.rated` 与 `money.message_box.*`。
-- **分包与不变量**：XAPK 总条目 `37 → 30`（语言分包 `28 → 21`：`+te`、`−am/fil/hi/ml/mr/sw/ta/tl`），全部 `20` 个原生 `.so` 库逐字节一致，`minSdk`/`targetSdk` `32`/`37`、`66` 项权限与 `83` 个组件不变，**网络 API 端点零增删**。
+- **Usage Credits 自动续费与 IAP 身份核验指引**：新增用量额度开启与自动扣款文案（`"Turn on usage credits?"`、`"Auto-reload will charge your card when your credits run low."`）及 `claudeai.usage_credits.code_limit_offer.step`；新增政府照片证件采集前置指引（`"Before you start"`、`"An unexpired government photo ID"`、可选自拍）、Google Play 环境检查提示、`claudeai.iap.identity_check.*` 遥测与 `PurchaseCancellation`（仅静态在场）。
+- **Reflect（`cardinal`）增强与 GitHub 代建仓库**：在 `1.261124.19` 既有 Reflect 基础上新增后台撰写通知、记忆前提提示、`"Delete all reflections?"` 与 `claudeai.cardinal.{notify.{offered,answered},recap.read,wait.left}`；新增 `"Create on GitHub"` / `"New repository"` / `"Approve on GitHub"`、`claudeai.code.repository_picker.new_repository.{shown,opened,finished}` 及重名/SSO/权限/结果不确定态错误分类。
+- **短视频限制、旧反馈下线与打包变化**：新增 1 分钟以内视频限制提示与 `"Pause/Play %1$s preview"` 控件文案，移除 `"Conversation outline (Ant only)"` 与旧反馈表单分类文案；已归档 XAPK 维持 `30` 成员，`config.x86_64.apk`（`10` 个 `.so`）自 `1.261113` 时代移除后回归，语言分包 `21 → 20`（`+gu`、`+hi`，`−da`、`−nb`、`−te`），`arm64-v8a`/`armeabi-v7a` 共 `20` 个原生库在 `1.261123.19`–`1.261125.19` 三版未重建，总 DEX 仅增 `+286,852` B（约 `+0.29` MB），`minSdk`/`targetSdk` `32`/`37`、`66` 项 `uses-permission` 权限与 `83` 个组件不变。
 
 ---
 
@@ -24,13 +24,13 @@
 
 ---
 
-## 上一 Android 版本：1.261113.19（Android，2026-11-14）
+## 上一 Android 版本：1.261124.19（Android，2026-11-25 Uptodown 镜像窗口）
 
-核心亮点见 [claude/2026-11-14_1.261113.19.md](claude/2026-11-14_1.261113.19.md)，完整技术细节见 [full/claude/2026-11-14_1.261113.19.md](full/claude/2026-11-14_1.261113.19.md)。_（Google Play 美区 `"Updated on: Nov 14, 2026"` + Uptodown `"Matches the published version"`；基线 `1.261112.18` 官方发布日未确认。仅基于 Uptodown Play-split XAPK 静态分析；不涵盖 iOS，未运行 APK，静态代码与文案在场不代表功能开放或政策/计费已生效。）_
+核心亮点见 [claude/2026-11-25_1.261124.19.md](claude/2026-11-25_1.261124.19.md)，完整技术细节见 [full/claude/2026-11-25_1.261124.19.md](full/claude/2026-11-25_1.261124.19.md)。_（发布窗口约 `2026-11-25/26`，不精确：Uptodown 标注 `Nov 25, 2026` 且附 `"Matches the published version"`，而 `2026-11-26` Play 美区快照仍停留 `"Updated on: Nov 24, 2026"` 且无版本号。基于 **Uptodown 第三方镜像** Play 原签分包 XAPK `1.261123.19 → 1.261124.19` 静态对比，非直接来自 Play 官方下载；未做 `apksigner` 全量校验，不涵盖 iOS 与 `1.261120.19`–`1.261122.*` 缺口，未运行 APK，静态在场不代表已放量。）_
 
-- **最低系统要求升至 Android 12L（`minSdkVersion` `29` → `32`）与 `27 → 30` 语言分包**：解码清单证实最低系统版本由 Android 10（`29`）提升至 Android 12L（`32`，API 32），`targetSdkVersion` `37` 不变；XAPK 总条目 `37 → 39`，语言 split 实际由 `27` 扩至 `30`（移除 `bho`，新增 `gu`、`nb`、`ta`、`te`；该份 Uptodown 分包样本未含 `config.x86_64.apk`，仅属样本现象而非官方停支证据）。
-- **独立语音听写（含离线听写）与朗读模块重构**：清理 `com.anthropic.claude.bell.tts.*` 下 12 个旧辅助/异常类（`TTSPlaybackService` 仍保留），在 `com.anthropic.voice.internal` 下新增 `readaloud`、`dictation` 与 `dictation/offline` 模块及 `stt.repo` 听写异常、`CallHooks.tools` 挂载更新。
-- **CCR 项目设置、GitHub SSO、底部导航扩充与静态额度迁移/KYC 代码**：新增 Claude Code Remote 项目设置表单、`GitHubSsoRequiredException`、`CoworkTurnOutcomeWorker` 后台完成通知、49 项底部导航目的地、已保存登录凭据授权提示、`"Response font"` / `"Anthropic Serif"` 与 `<files-path name="kept_tmp">`，下线移动端旧 Threads 视图并清理遥测位置事件字段；在 `1.261112.18` 既有 credits UI 基础上新增促销转额度迁移提示、语音额度提示及 `KycStatus` / `organizations/{organization}/kyc_status` 客户端代码（仅限静态代码在场）。
+- **GitHub 深度集成与 PR / Plan / 工具调用审批流**：新增 `claudeai.code.connect_github_card.*` 遥测、Claude GitHub App 安装引导、PR/plan/工具调用审批失败分类、组织连接器审批提示、`CollapsedToolsSheetDestination${HostPage,ProductPage,Viewer}` 及云环境配置引导。
+- **Safeguards 换模型文案与 Places 面板**：移动端新增约 12 条面向 biology/cybersecurity/sensitive topics 的 safeguards 自动换模型文案、新增 `claudeai.places_list.*` Places 面板与 `voice.reachability_checked`，并新增 usage 分区、`Default tab` 设置、明示排除 PHI 的项目指令编辑、共享会话链接提示、朗读限额及约 20 条登录/维护/限额错误文案，同时收缩/移除 `continue_on_cloud.*`（`8 → 1`）、`ready_made_card.rated` 与 `money.message_box.*`。
+- **分包与不变量**：XAPK 总条目 `37 → 30`（语言分包 `28 → 21`：`+te`、`−am/fil/hi/ml/mr/sw/ta/tl`），全部 `20` 个原生 `.so` 库逐字节一致，`minSdk`/`targetSdk` `32`/`37`、`66` 项权限与 `83` 个组件不变，**网络 API 端点零增删**。
 
 ---
 

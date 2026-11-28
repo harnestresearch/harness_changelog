@@ -2,9 +2,20 @@
 
 [English](../antigravity.md) | 简体中文 · **精简版 (Highlight)** | [完整详情 (Full Detail)](full/antigravity.md)
 
-> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）版本索引（覆盖 **Antigravity Desktop / Hub `2.35.2`** 与 **Antigravity IDE `2.7.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
+> 五端（`mac`、`win`、`ubuntu`、`ios`、`android`）版本索引（覆盖 **Antigravity Desktop / Hub `2.36.0`** 与 **Antigravity IDE `2.8.0`** 两条独立桌面产品线）见 [antigravity/README.md](antigravity/README.md)。
 
-## Antigravity Desktop（Hub）2.35.2（2026-11-25，包 `Last-Modified`）
+## Antigravity Desktop（Hub）2.36.0（2026-11-27）
+
+核心亮点见 [antigravity/2026-11-27_2.36.0.md](antigravity/2026-11-27_2.36.0.md)，完整技术细节见 [full/antigravity/2026-11-27_2.36.0.md](full/antigravity/2026-11-27_2.36.0.md)。_（壳层纯版本号变更 + 后端 Go `language_server` rebase 功能更新，构建 `2.36.0-5596661662220288`；`darwin-arm` 主分析 + 六端同构建点测，首次覆盖 `windows-arm64`，Windows `x64`/`arm64` LS PE 未覆盖；签名仅离线解析 CMS 链。）_
+
+### 核心亮点
+
+- **壳层纯版本号递增 + 后端 rebase 功能扩容（`+34` RPC 与 RemoteControl Mesh 传输）**：`app.asar`（`1,167` 文件、`20,690,656` B，六端逐字节一致）仅 `package.json` 版本号升至 `2.36.0`。Go `language_server` rebase 至分支基线 `1030397722`（`cl/1031268331`，`darwin-arm` `−717,648` B，`strings` `+58,899 / −58,470`），新增 `+34` Connect-RPC（`338` → `372`，含新服务 `JetskiRemoteAgentProxyService` 覆盖远程智能体管理、文件/权限、Sidecar 与自动化 Trigger）、RemoteControl **Mesh** 传输（WebChannel 回退，配套 macOS `agy-desktop-rtc` `+22,592` B）、`policyguardian/sensitivity`、Proctor J1/C8 规则、Sentry Go SDK、`4` 个新具名开关及 `neonccpa` → `neondefault`（模型 `44`、`*ToolConfig` `65` 与 CUA `19` 零变化）。
+- **官方 `v2.36.0` 说明（`13` 项改进 + `26` 项修复）—— 包内实证与 webapp 区分**：远程智能体云端自动化桌面授权（RPC/服务面）与 `~/.agents/skills` 自定义技能发现（`~/.gemini` 优先）获 `language_server` 静态实证；标题级 UI/策略条目（*最大化面板浮动 composer*、*Auto mode 跨仓库安全编辑*、*语音通话上下文带入*、*MCP OAuth 离线访问*、*File/Zoom 子菜单*、*子代理 LaTeX 渲染*）与 `26` 项修复主要归属远程 Hub webapp/服务端，无法从静态安装包证实。
+
+---
+
+## 前序 Hub 版本：2.35.2（2026-11-25，包 `Last-Modified`）
 
 核心亮点见 [antigravity/2026-11-25_2.35.2.md](antigravity/2026-11-25_2.35.2.md)，完整技术细节见 [full/antigravity/2026-11-25_2.35.2.md](full/antigravity/2026-11-25_2.35.2.md)。_（相对 `2.35.1` 的纯维护版，构建 `2.35.2-4585983447007232`；`darwin-arm` 主分析 + 五端同构建点测，首次覆盖 `darwin-x64` 与 `linux-arm`，Windows LS PE/CL 未覆盖；签名仅离线解析 CMS 链。）_
 
@@ -23,6 +34,18 @@
 
 - **`2.35.0` → `2.35.1`（维护版；官方 `v2.35.1` 三条无包内静态落点）**：`app.asar`（`1,167` 文件、`20,690,656` B）相对 `2.35.0` 仅 `package.json` 版本号更新；Go `language_server` 同基线（`1027784732`）重编译（`cl/1028447422 → cl/1029194470`，`+16.5` KB），RPC（`338`）、开关（`225`）、模型（`44`）、`*ToolConfig`（`65`）与 CUA（`19`）五口径零差异，macOS 副件同大小重编译。既有 `2026-11-25` 快照记录的官方 `v2.35.1` 三条说明（重启恢复会话、插件面板自动打开、诊断上传压缩）在两段包内均**无静态落点**（属 Hub webapp/运行时侧）。
 - **`2.34.0` → `2.35.0`（前序功能与重构段，不归因于 `2.35.1`）**：`2.35.0` 重组桌面壳层 `computer/`（移出 `hud`/`hudAgents`/`hudState`，新增 `customWindowControls.js`、`permissionGuide.js`、`idleProbe.js`、`appChannel.js` 及 macOS `agy-desktop-rtc`），并将 `language_server` rebase 重构（`+428` KB，`strings` `+30,776/−29,097`），新增 `agentapi` 会话管理 CLI 子命令、`AgentRemoteSession` CRUD/订阅/reaction、`ListPluginPermissionGrants`/`RevokePluginPermissionGrant`、`openai/openai_go`（`10,475` 符号）及 `enable-mcp-apps`/orchestrator/swarm 等开关，同时 RPC 面由 `380` 收缩至 `338`（而无限历史与 conversations skill 资产在包内不可证）。
+
+---
+
+## Antigravity IDE 2.8.0（2026-11-19）
+
+核心亮点见 [antigravity/2026-11-19_ide-2.8.0.md](antigravity/2026-11-19_ide-2.8.0.md)，完整技术细节见 [full/antigravity/2026-11-19_ide-2.8.0.md](full/antigravity/2026-11-19_ide-2.8.0.md)。_（全部代码改动集中于 `extensions/agy` `1.11.0 → 1.12.0`［`+66.9` KB］与 macOS 独有 MSAL 原生库重编译；Code OSS `1.107.0` 基座连续三版冻结，构建号 `2.8.0-6733682917113856`；`darwin-arm` 主分析 + `linux-x64`/`windows-x64` 核对。）_
+
+### 核心亮点
+
+- **后台周期更新检查、即刻启动与防降级保护**：新增后端周期更新检查与 **“Restart Agent Server”** 重启提示、已装后端启动期延迟检查，以及 `downgrade_skipped`、`same_version_rebuild`、`staged_promoted`、`check_deferred` 等防多窗口降级与防恢复超时重复下载保护机制。
+- **远程登录端口转发、授权码回退与自定义根证书 / 代理支持**：面向 `ssh-remote`、`dev-container`、`attached-container`、`cloud-shell`、`cloud-workstations`、`codespaces` 六类远程环境新增登录端口转发与 OOB 授权码回退（扩展侧直连 `SwitchLoginToAuthCode` 指向运行时 `agy`），并新增 `antigravity.caCertificates` 与企业自定义根证书/代理配置读取。
+- **会话内搜索快捷键、`+26` 桥接 Schema 与官方条目核对**：新增 Agent 面板聚焦 `Ctrl+F`（macOS `Cmd+F`）会话内搜索转发与 `+26` 个同步 webview Schema（定制解析、Harness 步骤、模型目录、内容层）；官方 `v2.8.0` `12` 条中有 `3` 条（*60s 就绪超时*、*Windows 注销恢复死循环修复*、*Windows 通知聚焦修复*）不在 IDE 静态包面内（归属运行时 `agy` CLI 或远程 webview）。
 
 ---
 
@@ -62,7 +85,7 @@
 
 ---
 
-## Antigravity IDE 2.7.0（发布时间未确认；构建于 2026-11-11）
+## 前序 IDE 版本：Antigravity IDE 2.7.0（发布时间未确认；构建于 2026-11-11）
 
 核心亮点见 [antigravity/2026-11-11_ide-2.7.0.md](antigravity/2026-11-11_ide-2.7.0.md)，完整技术细节见 [full/antigravity/2026-11-11_ide-2.7.0.md](full/antigravity/2026-11-11_ide-2.7.0.md)。_（发布时间未确认；`product.json` 中的北京时间 `2026-11-11 12:46` 是构建时间，不是发布时间。）_
 
